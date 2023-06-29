@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarTool", "CalendarTool\CalendarTool.csproj", "{1C075C0A-A978-4AD8-BE52-9F227D8A6C8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C2991BA9-0ACF-48D8-BFD5-BBB0BA8F1974}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C075C0A-A978-4AD8-BE52-9F227D8A6C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C075C0A-A978-4AD8-BE52-9F227D8A6C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C075C0A-A978-4AD8-BE52-9F227D8A6C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C075C0A-A978-4AD8-BE52-9F227D8A6C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06A16942-8F5C-4213-9429-EF78B65E04DB}
+	EndGlobalSection
+EndGlobal
