@@ -86,6 +86,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addAppointmentForm.Designer.cs">
+      <DependentUpon>addAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addCustomerForm.Designer.cs">
+      <DependentUpon>addCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="confirmDeleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="confirmDeleteForm.Designer.cs">
+      <DependentUpon>confirmDeleteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +130,21 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="updateAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateAppointmentForm.Designer.cs">
+      <DependentUpon>updateAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="updateCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateCustomerForm.Designer.cs">
+      <DependentUpon>updateCustomerForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="addAppointmentForm.resx" />
+    <EmbeddedResource Include="addCustomerForm.resx" />
+    <EmbeddedResource Include="confirmDeleteForm.resx" />
     <EmbeddedResource Include="dashboard.resx" />
     <EmbeddedResource Include="GlobalValues.es-MX.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -136,6 +169,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="updateAppointmentForm.resx" />
+    <EmbeddedResource Include="updateCustomerForm.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
