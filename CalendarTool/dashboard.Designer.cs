@@ -31,214 +31,216 @@ namespace CalendarTool
         /// </summary>
         private void InitializeComponent()
         {
-            dashboardTitleLabel = new Label();
-            appointmentsLabel = new Label();
-            customersLabel = new Label();
-            appointmentsDGV = new DataGridView();
-            customersDGV = new DataGridView();
-            deleteApptButton = new Button();
-            updateApptButton = new Button();
-            createApptButton = new Button();
-            createCustomerButton = new Button();
-            updateCustomerButton = new Button();
-            deleteCustomerButton = new Button();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            report1 = new Button();
-            report2 = new Button();
-            report3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)appointmentsDGV).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)customersDGV).BeginInit();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            SuspendLayout();
+            this.dashboardTitleLabel = new System.Windows.Forms.Label();
+            this.appointmentsLabel = new System.Windows.Forms.Label();
+            this.customersLabel = new System.Windows.Forms.Label();
+            this.appointmentsDGV = new System.Windows.Forms.DataGridView();
+            this.customersDGV = new System.Windows.Forms.DataGridView();
+            this.deleteApptButton = new System.Windows.Forms.Button();
+            this.updateApptButton = new System.Windows.Forms.Button();
+            this.createApptButton = new System.Windows.Forms.Button();
+            this.createCustomerButton = new System.Windows.Forms.Button();
+            this.updateCustomerButton = new System.Windows.Forms.Button();
+            this.deleteCustomerButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.report1 = new System.Windows.Forms.Button();
+            this.report2 = new System.Windows.Forms.Button();
+            this.report3 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.SuspendLayout();
             // 
             // dashboardTitleLabel
             // 
-            dashboardTitleLabel.AutoSize = true;
-            dashboardTitleLabel.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            dashboardTitleLabel.Location = new Point(315, 9);
-            dashboardTitleLabel.Name = "dashboardTitleLabel";
-            dashboardTitleLabel.Size = new Size(348, 45);
-            dashboardTitleLabel.TabIndex = 2;
-            dashboardTitleLabel.Text = "Scheduling Dashboard";
-            dashboardTitleLabel.Click += newCustomerTitleLabel_Click;
+            this.dashboardTitleLabel.AutoSize = true;
+            this.dashboardTitleLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold);
+            this.dashboardTitleLabel.Location = new System.Drawing.Point(270, 8);
+            this.dashboardTitleLabel.Name = "dashboardTitleLabel";
+            this.dashboardTitleLabel.Size = new System.Drawing.Size(348, 45);
+            this.dashboardTitleLabel.TabIndex = 2;
+            this.dashboardTitleLabel.Text = "Scheduling Dashboard";
             // 
             // appointmentsLabel
             // 
-            appointmentsLabel.AutoSize = true;
-            appointmentsLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            appointmentsLabel.Location = new Point(13, 2);
-            appointmentsLabel.Name = "appointmentsLabel";
-            appointmentsLabel.Size = new Size(177, 32);
-            appointmentsLabel.TabIndex = 3;
-            appointmentsLabel.Text = "Appointments";
+            this.appointmentsLabel.AutoSize = true;
+            this.appointmentsLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.appointmentsLabel.Location = new System.Drawing.Point(11, 2);
+            this.appointmentsLabel.Name = "appointmentsLabel";
+            this.appointmentsLabel.Size = new System.Drawing.Size(178, 32);
+            this.appointmentsLabel.TabIndex = 3;
+            this.appointmentsLabel.Text = "Appointments";
             // 
             // customersLabel
             // 
-            customersLabel.AutoSize = true;
-            customersLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            customersLabel.Location = new Point(12, 10);
-            customersLabel.Name = "customersLabel";
-            customersLabel.Size = new Size(135, 32);
-            customersLabel.TabIndex = 4;
-            customersLabel.Text = "Customers";
+            this.customersLabel.AutoSize = true;
+            this.customersLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.customersLabel.Location = new System.Drawing.Point(10, 9);
+            this.customersLabel.Name = "customersLabel";
+            this.customersLabel.Size = new System.Drawing.Size(136, 32);
+            this.customersLabel.TabIndex = 4;
+            this.customersLabel.Text = "Customers";
             // 
             // appointmentsDGV
             // 
-            appointmentsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            appointmentsDGV.Location = new Point(48, 94);
-            appointmentsDGV.Name = "appointmentsDGV";
-            appointmentsDGV.RowTemplate.Height = 25;
-            appointmentsDGV.Size = new Size(884, 212);
-            appointmentsDGV.TabIndex = 5;
+            this.appointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.appointmentsDGV.Location = new System.Drawing.Point(41, 81);
+            this.appointmentsDGV.Name = "appointmentsDGV";
+            this.appointmentsDGV.RowTemplate.Height = 25;
+            this.appointmentsDGV.Size = new System.Drawing.Size(758, 184);
+            this.appointmentsDGV.TabIndex = 5;
+            this.appointmentsDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.myBindingComplete);
             // 
             // customersDGV
             // 
-            customersDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            customersDGV.Location = new Point(12, 45);
-            customersDGV.Name = "customersDGV";
-            customersDGV.RowTemplate.Height = 25;
-            customersDGV.Size = new Size(884, 212);
-            customersDGV.TabIndex = 6;
+            this.customersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.customersDGV.Location = new System.Drawing.Point(10, 39);
+            this.customersDGV.Name = "customersDGV";
+            this.customersDGV.RowTemplate.Height = 25;
+            this.customersDGV.Size = new System.Drawing.Size(758, 184);
+            this.customersDGV.TabIndex = 6;
+            this.customersDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.customerBindingComplete);
             // 
             // deleteApptButton
             // 
-            deleteApptButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            deleteApptButton.Location = new Point(552, 253);
-            deleteApptButton.Name = "deleteApptButton";
-            deleteApptButton.Size = new Size(103, 44);
-            deleteApptButton.TabIndex = 12;
-            deleteApptButton.Text = "Delete";
-            deleteApptButton.UseVisualStyleBackColor = true;
+            this.deleteApptButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.deleteApptButton.Location = new System.Drawing.Point(473, 219);
+            this.deleteApptButton.Name = "deleteApptButton";
+            this.deleteApptButton.Size = new System.Drawing.Size(88, 38);
+            this.deleteApptButton.TabIndex = 12;
+            this.deleteApptButton.Text = "Delete";
+            this.deleteApptButton.UseVisualStyleBackColor = true;
             // 
             // updateApptButton
             // 
-            updateApptButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            updateApptButton.Location = new Point(412, 253);
-            updateApptButton.Name = "updateApptButton";
-            updateApptButton.Size = new Size(103, 44);
-            updateApptButton.TabIndex = 11;
-            updateApptButton.Text = "Update";
-            updateApptButton.UseVisualStyleBackColor = true;
+            this.updateApptButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.updateApptButton.Location = new System.Drawing.Point(353, 219);
+            this.updateApptButton.Name = "updateApptButton";
+            this.updateApptButton.Size = new System.Drawing.Size(88, 38);
+            this.updateApptButton.TabIndex = 11;
+            this.updateApptButton.Text = "Update";
+            this.updateApptButton.UseVisualStyleBackColor = true;
             // 
             // createApptButton
             // 
-            createApptButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            createApptButton.Location = new Point(282, 253);
-            createApptButton.Name = "createApptButton";
-            createApptButton.Size = new Size(103, 44);
-            createApptButton.TabIndex = 10;
-            createApptButton.Text = "Create";
-            createApptButton.UseVisualStyleBackColor = true;
+            this.createApptButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.createApptButton.Location = new System.Drawing.Point(242, 219);
+            this.createApptButton.Name = "createApptButton";
+            this.createApptButton.Size = new System.Drawing.Size(88, 38);
+            this.createApptButton.TabIndex = 10;
+            this.createApptButton.Text = "Create";
+            this.createApptButton.UseVisualStyleBackColor = true;
             // 
             // createCustomerButton
             // 
-            createCustomerButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            createCustomerButton.Location = new Point(272, 263);
-            createCustomerButton.Name = "createCustomerButton";
-            createCustomerButton.Size = new Size(103, 44);
-            createCustomerButton.TabIndex = 10;
-            createCustomerButton.Text = "Create";
-            createCustomerButton.UseVisualStyleBackColor = true;
+            this.createCustomerButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.createCustomerButton.Location = new System.Drawing.Point(233, 228);
+            this.createCustomerButton.Name = "createCustomerButton";
+            this.createCustomerButton.Size = new System.Drawing.Size(88, 38);
+            this.createCustomerButton.TabIndex = 10;
+            this.createCustomerButton.Text = "Create";
+            this.createCustomerButton.UseVisualStyleBackColor = true;
             // 
             // updateCustomerButton
             // 
-            updateCustomerButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            updateCustomerButton.Location = new Point(412, 263);
-            updateCustomerButton.Name = "updateCustomerButton";
-            updateCustomerButton.Size = new Size(103, 44);
-            updateCustomerButton.TabIndex = 11;
-            updateCustomerButton.Text = "Update";
-            updateCustomerButton.UseVisualStyleBackColor = true;
+            this.updateCustomerButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.updateCustomerButton.Location = new System.Drawing.Point(353, 228);
+            this.updateCustomerButton.Name = "updateCustomerButton";
+            this.updateCustomerButton.Size = new System.Drawing.Size(88, 38);
+            this.updateCustomerButton.TabIndex = 11;
+            this.updateCustomerButton.Text = "Update";
+            this.updateCustomerButton.UseVisualStyleBackColor = true;
             // 
             // deleteCustomerButton
             // 
-            deleteCustomerButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            deleteCustomerButton.Location = new Point(552, 263);
-            deleteCustomerButton.Name = "deleteCustomerButton";
-            deleteCustomerButton.Size = new Size(103, 44);
-            deleteCustomerButton.TabIndex = 12;
-            deleteCustomerButton.Text = "Delete";
-            deleteCustomerButton.UseVisualStyleBackColor = true;
+            this.deleteCustomerButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.deleteCustomerButton.Location = new System.Drawing.Point(473, 228);
+            this.deleteCustomerButton.Name = "deleteCustomerButton";
+            this.deleteCustomerButton.Size = new System.Drawing.Size(88, 38);
+            this.deleteCustomerButton.TabIndex = 12;
+            this.deleteCustomerButton.Text = "Delete";
+            this.deleteCustomerButton.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.MediumAquamarine;
-            panel1.Controls.Add(deleteCustomerButton);
-            panel1.Controls.Add(customersLabel);
-            panel1.Controls.Add(customersDGV);
-            panel1.Controls.Add(updateCustomerButton);
-            panel1.Controls.Add(createCustomerButton);
-            panel1.Location = new Point(32, 376);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(910, 314);
-            panel1.TabIndex = 13;
+            this.panel1.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panel1.Controls.Add(this.deleteCustomerButton);
+            this.panel1.Controls.Add(this.customersLabel);
+            this.panel1.Controls.Add(this.customersDGV);
+            this.panel1.Controls.Add(this.updateCustomerButton);
+            this.panel1.Controls.Add(this.createCustomerButton);
+            this.panel1.Location = new System.Drawing.Point(27, 326);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(780, 272);
+            this.panel1.TabIndex = 13;
             // 
             // panel2
             // 
-            panel2.BackColor = Color.PowderBlue;
-            panel2.Controls.Add(createApptButton);
-            panel2.Controls.Add(appointmentsLabel);
-            panel2.Controls.Add(updateApptButton);
-            panel2.Controls.Add(deleteApptButton);
-            panel2.Location = new Point(35, 57);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(907, 302);
-            panel2.TabIndex = 14;
+            this.panel2.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel2.Controls.Add(this.createApptButton);
+            this.panel2.Controls.Add(this.appointmentsLabel);
+            this.panel2.Controls.Add(this.updateApptButton);
+            this.panel2.Controls.Add(this.deleteApptButton);
+            this.panel2.Location = new System.Drawing.Point(30, 49);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(777, 262);
+            this.panel2.TabIndex = 14;
             // 
             // report1
             // 
-            report1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            report1.Location = new Point(149, 696);
-            report1.Name = "report1";
-            report1.Size = new Size(103, 44);
-            report1.TabIndex = 13;
-            report1.Text = "Report";
-            report1.UseVisualStyleBackColor = true;
+            this.report1.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.report1.Location = new System.Drawing.Point(128, 603);
+            this.report1.Name = "report1";
+            this.report1.Size = new System.Drawing.Size(88, 38);
+            this.report1.TabIndex = 13;
+            this.report1.Text = "Report";
+            this.report1.UseVisualStyleBackColor = true;
             // 
             // report2
             // 
-            report2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            report2.Location = new Point(293, 696);
-            report2.Name = "report2";
-            report2.Size = new Size(103, 44);
-            report2.TabIndex = 15;
-            report2.Text = "Report";
-            report2.UseVisualStyleBackColor = true;
+            this.report2.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.report2.Location = new System.Drawing.Point(251, 603);
+            this.report2.Name = "report2";
+            this.report2.Size = new System.Drawing.Size(88, 38);
+            this.report2.TabIndex = 15;
+            this.report2.Text = "Report";
+            this.report2.UseVisualStyleBackColor = true;
             // 
             // report3
             // 
-            report3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            report3.Location = new Point(444, 696);
-            report3.Name = "report3";
-            report3.Size = new Size(103, 44);
-            report3.TabIndex = 16;
-            report3.Text = "Report";
-            report3.UseVisualStyleBackColor = true;
+            this.report3.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.report3.Location = new System.Drawing.Point(381, 603);
+            this.report3.Name = "report3";
+            this.report3.Size = new System.Drawing.Size(88, 38);
+            this.report3.TabIndex = 16;
+            this.report3.Text = "Report";
+            this.report3.UseVisualStyleBackColor = true;
             // 
             // dashboard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(968, 748);
-            Controls.Add(report3);
-            Controls.Add(report2);
-            Controls.Add(report1);
-            Controls.Add(appointmentsDGV);
-            Controls.Add(dashboardTitleLabel);
-            Controls.Add(panel1);
-            Controls.Add(panel2);
-            Name = "dashboard";
-            Text = "dashboard";
-            ((System.ComponentModel.ISupportInitialize)appointmentsDGV).EndInit();
-            ((System.ComponentModel.ISupportInitialize)customersDGV).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(830, 648);
+            this.Controls.Add(this.report3);
+            this.Controls.Add(this.report2);
+            this.Controls.Add(this.report1);
+            this.Controls.Add(this.appointmentsDGV);
+            this.Controls.Add(this.dashboardTitleLabel);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
+            this.Name = "dashboard";
+            this.Text = "dashboard";
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

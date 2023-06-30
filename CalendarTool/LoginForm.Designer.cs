@@ -91,6 +91,7 @@ namespace CalendarTool
             resources.ApplyResources(this.loginExitButton, "loginExitButton");
             this.loginExitButton.Name = "loginExitButton";
             this.loginExitButton.UseVisualStyleBackColor = true;
+            this.loginExitButton.Click += new System.EventHandler(this.loginExitButton_Click);
             // 
             // errorLabel
             // 

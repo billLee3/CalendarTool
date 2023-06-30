@@ -381,13 +381,10 @@
     <value>27, 336</value>
   </data>
   <data name="errorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 32</value>
+    <value>0, 32</value>
   </data>
   <data name="errorLabel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
-  </data>
-  <data name="errorLabel.Text" xml:space="preserve">
-    <value>label1</value>
   </data>
   <data name="&gt;&gt;errorLabel.Name" xml:space="preserve">
     <value>errorLabel</value>
@@ -408,7 +405,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>401, 398</value>
+    <value>519, 398</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>LoginForm</value>

@@ -23,7 +23,7 @@ namespace CalendarTool.Database
 
 				conn.Open();
 
-				MessageBox.Show("Connection is open");
+				
 			}
 			catch (MySqlException ex)
 			{
