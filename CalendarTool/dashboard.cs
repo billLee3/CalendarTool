@@ -70,7 +70,52 @@ namespace CalendarTool
             customersDGV.ClearSelection();
         }
 
-        
-        
-    }
+		private void createApptButton_Click(object sender, EventArgs e)
+		{
+            addAppointmentForm newForm = new addAppointmentForm();
+            newForm.Show();
+		}
+
+		private void updateApptButton_Click(object sender, EventArgs e)
+		{
+            var selectedRowIndex = (int)(appointmentsDGV.CurrentCell.RowIndex);
+            var selectedApptID = appointmentsDGV.Rows[selectedRowIndex].Cells[0].Value;
+
+            if (selectedApptID != null) 
+            {
+                updateAppointmentForm updateForm = new updateAppointmentForm((int)selectedApptID);
+                updateForm.Show();
+            }
+		}
+
+		private void deleteApptButton_Click(object sender, EventArgs e)
+		{
+            confirmDeleteForm confirmDelete = new confirmDeleteForm();
+            confirmDelete.Show();
+		}
+
+		private void createCustomerButton_Click(object sender, EventArgs e)
+		{
+            addCustomerForm newForm = new addCustomerForm();
+            newForm.Show();
+        }
+
+		private void updateCustomerButton_Click(object sender, EventArgs e)
+		{
+            var selectedRowIndex = (int)(customersDGV.CurrentCell.RowIndex);
+            var selectedCustomerID = customersDGV.Rows[selectedRowIndex].Cells[0].Value;
+
+            if (selectedCustomerID != null)
+            {
+                updateCustomerForm updateForm = new updateCustomerForm((int)selectedCustomerID);
+                updateForm.Show();
+            }
+        }
+
+		private void deleteCustomerButton_Click(object sender, EventArgs e)
+		{
+            confirmDeleteForm confirmDelete = new confirmDeleteForm();
+            confirmDelete.Show();
+        }
+	}
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace CalendarTool
 {
@@ -16,5 +17,73 @@ namespace CalendarTool
         {
             InitializeComponent();
         }
-    }
+
+        public updateAppointmentForm(int recordID) 
+        {
+            InitializeComponent();
+            apptIDTextBox.Enabled = false;
+            apptIDTextBox.Text = recordID.ToString();
+
+            string apptQuery = $"Select * from appointment where appointmentID = {recordID}";
+            //Grab the information from the SQL Connection
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(apptQuery, Database.dbConnection.conn))
+            {
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                DataTable userTable = ds.Tables[0];
+                DataRow row1 = userTable.Rows[0];
+                
+                if (row1 != null) 
+                {
+                    string customerID = row1.Field<int>("customerId").ToString();
+                    customerIDTextBox.Text = customerID;
+
+                    //TODO: This will need to change to the user that is logged in. 
+                    string userID = row1.Field<int>("userId").ToString();
+                    userIDTextBox.Text = userID;
+
+                    string title = row1.Field<string>("title");
+                    apptTitleTextBox.Text = title;
+
+                    string description = row1.Field<string>("description");
+                    descriptionTextBox.Text = description;
+
+                    string location = row1.Field<string>("location");
+                    locationTextBox.Text = location;
+
+                    string contact = row1.Field<string>("contact");
+                    pocTextBox.Text = contact;
+
+                    string type = row1.Field<string>("type");
+                    apptTypeTextBox.Text = type;
+
+                    string url = row1.Field<string>("url");
+                    urlTextBox.Text = url;
+
+                    DateTime startDateTime = row1.Field<DateTime>("start");
+                    startDateTimePicker.Value = startDateTime;
+
+                    DateTime startTime = startDateTime.ToLocalTime();
+                    startTimePicker.Value = startTime;
+
+                    DateTime endDateTime = row1.Field<DateTime>("end");
+                    endDateTimePicker.Value = endDateTime;
+
+                    DateTime endTime = endDateTime.ToLocalTime();
+                    endTimePicker.Value = endTime;
+                }
+            }
+                //Fill in the data from the database to the entries. 
+            }
+
+		private void endDateTimePicker_ValueChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

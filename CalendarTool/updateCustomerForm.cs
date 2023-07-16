@@ -16,5 +16,13 @@ namespace CalendarTool
         {
             InitializeComponent();
         }
+
+        public updateCustomerForm(int recordID) 
+        {
+            InitializeComponent();
+            customerNumTextBox.Enabled = false;
+            customerNumTextBox.Text = recordID.ToString();
+            
+        }
     }
 }

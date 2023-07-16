@@ -31,342 +31,372 @@ namespace CalendarTool
         /// </summary>
         private void InitializeComponent()
         {
-            updateApptTitleLabel = new Label();
-            apptIDLabel = new Label();
-            apptIDTextBox = new TextBox();
-            userIDLabel = new Label();
-            customerNumLabel = new Label();
-            apptTitleLabel = new Label();
-            apptDescriptionLabel = new Label();
-            apptTypeLabel = new Label();
-            pocLabel = new Label();
-            urlLabel = new Label();
-            startDateLabel = new Label();
-            locationLabel = new Label();
-            startTimeLabel = new Label();
-            endDateLabel = new Label();
-            endTimeLabel = new Label();
-            createApptButton = new Button();
-            cancelNewApptButton = new Button();
-            newApptErrorLabel = new Label();
-            userIDTextBox = new TextBox();
-            customerIDTextBox = new TextBox();
-            apptTitleTextBox = new TextBox();
-            pocTextBox = new TextBox();
-            descriptionTextBox = new TextBox();
-            errorLabel = new Label();
-            apptTypeTextBox = new TextBox();
-            locationTextBox = new TextBox();
-            urlTextBox = new TextBox();
-            endDateTimePicker = new DateTimePicker();
-            startDateTimePicker = new DateTimePicker();
-            SuspendLayout();
-            // 
-            // updateApptTitleLabel
-            // 
-            updateApptTitleLabel.AutoSize = true;
-            updateApptTitleLabel.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            updateApptTitleLabel.Location = new Point(293, 9);
-            updateApptTitleLabel.Name = "updateApptTitleLabel";
-            updateApptTitleLabel.Size = new Size(329, 45);
-            updateApptTitleLabel.TabIndex = 0;
-            updateApptTitleLabel.Text = "Update Appointment";
-            // 
-            // apptIDLabel
-            // 
-            apptIDLabel.AutoSize = true;
-            apptIDLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            apptIDLabel.Location = new Point(48, 94);
-            apptIDLabel.Name = "apptIDLabel";
-            apptIDLabel.Size = new Size(95, 32);
-            apptIDLabel.TabIndex = 1;
-            apptIDLabel.Text = "Appt ID";
-            // 
-            // apptIDTextBox
-            // 
-            apptIDTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            apptIDTextBox.Location = new Point(160, 94);
-            apptIDTextBox.Name = "apptIDTextBox";
-            apptIDTextBox.Size = new Size(100, 35);
-            apptIDTextBox.TabIndex = 2;
-            // 
-            // userIDLabel
-            // 
-            userIDLabel.AutoSize = true;
-            userIDLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            userIDLabel.Location = new Point(311, 95);
-            userIDLabel.Name = "userIDLabel";
-            userIDLabel.Size = new Size(82, 32);
-            userIDLabel.TabIndex = 3;
-            userIDLabel.Text = "User #";
-            // 
-            // customerNumLabel
-            // 
-            customerNumLabel.AutoSize = true;
-            customerNumLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            customerNumLabel.Location = new Point(548, 98);
-            customerNumLabel.Name = "customerNumLabel";
-            customerNumLabel.Size = new Size(138, 32);
-            customerNumLabel.TabIndex = 4;
-            customerNumLabel.Text = "Customer #";
-            // 
-            // apptTitleLabel
-            // 
-            apptTitleLabel.AutoSize = true;
-            apptTitleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            apptTitleLabel.Location = new Point(25, 162);
-            apptTitleLabel.Name = "apptTitleLabel";
-            apptTitleLabel.Size = new Size(118, 32);
-            apptTitleLabel.TabIndex = 5;
-            apptTitleLabel.Text = "Appt Title";
-            // 
-            // apptDescriptionLabel
-            // 
-            apptDescriptionLabel.AutoSize = true;
-            apptDescriptionLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            apptDescriptionLabel.Location = new Point(8, 228);
-            apptDescriptionLabel.Name = "apptDescriptionLabel";
-            apptDescriptionLabel.Size = new Size(135, 32);
-            apptDescriptionLabel.TabIndex = 6;
-            apptDescriptionLabel.Text = "Description";
-            // 
-            // apptTypeLabel
-            // 
-            apptTypeLabel.AutoSize = true;
-            apptTypeLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            apptTypeLabel.Location = new Point(12, 316);
-            apptTypeLabel.Name = "apptTypeLabel";
-            apptTypeLabel.Size = new Size(123, 32);
-            apptTypeLabel.TabIndex = 7;
-            apptTypeLabel.Text = "Appt Type";
-            // 
-            // pocLabel
-            // 
-            pocLabel.AutoSize = true;
-            pocLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            pocLabel.Location = new Point(626, 158);
-            pocLabel.Name = "pocLabel";
-            pocLabel.Size = new Size(60, 32);
-            pocLabel.TabIndex = 8;
-            pocLabel.Text = "POC";
-            // 
-            // urlLabel
-            // 
-            urlLabel.AutoSize = true;
-            urlLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            urlLabel.Location = new Point(12, 378);
-            urlLabel.Name = "urlLabel";
-            urlLabel.Size = new Size(73, 32);
-            urlLabel.TabIndex = 9;
-            urlLabel.Text = "URL? ";
-            // 
-            // startDateLabel
-            // 
-            startDateLabel.AutoSize = true;
-            startDateLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            startDateLabel.Location = new Point(16, 440);
-            startDateLabel.Name = "startDateLabel";
-            startDateLabel.Size = new Size(119, 32);
-            startDateLabel.TabIndex = 10;
-            startDateLabel.Text = "Start Date";
-            // 
-            // locationLabel
-            // 
-            locationLabel.AutoSize = true;
-            locationLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            locationLabel.Location = new Point(399, 316);
-            locationLabel.Name = "locationLabel";
-            locationLabel.Size = new Size(104, 32);
-            locationLabel.TabIndex = 11;
-            locationLabel.Text = "Location";
-            // 
-            // startTimeLabel
-            // 
-            startTimeLabel.AutoSize = true;
-            startTimeLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            startTimeLabel.Location = new Point(399, 440);
-            startTimeLabel.Name = "startTimeLabel";
-            startTimeLabel.Size = new Size(122, 32);
-            startTimeLabel.TabIndex = 12;
-            startTimeLabel.Text = "Start Time";
-            // 
-            // endDateLabel
-            // 
-            endDateLabel.AutoSize = true;
-            endDateLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            endDateLabel.Location = new Point(16, 503);
-            endDateLabel.Name = "endDateLabel";
-            endDateLabel.Size = new Size(111, 32);
-            endDateLabel.TabIndex = 13;
-            endDateLabel.Text = "End Date";
-            // 
-            // endTimeLabel
-            // 
-            endTimeLabel.AutoSize = true;
-            endTimeLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            endTimeLabel.Location = new Point(407, 503);
-            endTimeLabel.Name = "endTimeLabel";
-            endTimeLabel.Size = new Size(114, 32);
-            endTimeLabel.TabIndex = 14;
-            endTimeLabel.Text = "End Time";
-            // 
-            // createApptButton
-            // 
-            createApptButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            createApptButton.Location = new Point(16, 622);
-            createApptButton.Name = "createApptButton";
-            createApptButton.Size = new Size(134, 39);
-            createApptButton.TabIndex = 15;
-            createApptButton.Text = "Create";
-            createApptButton.UseVisualStyleBackColor = true;
-            // 
-            // cancelNewApptButton
-            // 
-            cancelNewApptButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            cancelNewApptButton.Location = new Point(399, 622);
-            cancelNewApptButton.Name = "cancelNewApptButton";
-            cancelNewApptButton.Size = new Size(134, 39);
-            cancelNewApptButton.TabIndex = 16;
-            cancelNewApptButton.Text = "Cancel";
-            cancelNewApptButton.UseVisualStyleBackColor = true;
-            // 
-            // newApptErrorLabel
-            // 
-            newApptErrorLabel.AutoSize = true;
-            newApptErrorLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            newApptErrorLabel.ForeColor = Color.FromArgb(192, 0, 0);
-            newApptErrorLabel.Location = new Point(232, 744);
-            newApptErrorLabel.Name = "newApptErrorLabel";
-            newApptErrorLabel.Size = new Size(0, 25);
-            newApptErrorLabel.TabIndex = 17;
-            // 
-            // userIDTextBox
-            // 
-            userIDTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            userIDTextBox.Location = new Point(399, 95);
-            userIDTextBox.Name = "userIDTextBox";
-            userIDTextBox.Size = new Size(100, 35);
-            userIDTextBox.TabIndex = 18;
-            // 
-            // customerIDTextBox
-            // 
-            customerIDTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            customerIDTextBox.Location = new Point(692, 98);
-            customerIDTextBox.Name = "customerIDTextBox";
-            customerIDTextBox.Size = new Size(100, 35);
-            customerIDTextBox.TabIndex = 19;
-            // 
-            // apptTitleTextBox
-            // 
-            apptTitleTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            apptTitleTextBox.Location = new Point(160, 161);
-            apptTitleTextBox.Name = "apptTitleTextBox";
-            apptTitleTextBox.Size = new Size(339, 35);
-            apptTitleTextBox.TabIndex = 20;
-            // 
-            // pocTextBox
-            // 
-            pocTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            pocTextBox.Location = new Point(692, 158);
-            pocTextBox.Name = "pocTextBox";
-            pocTextBox.Size = new Size(100, 35);
-            pocTextBox.TabIndex = 21;
-            // 
-            // descriptionTextBox
-            // 
-            descriptionTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            descriptionTextBox.Location = new Point(12, 263);
-            descriptionTextBox.Name = "descriptionTextBox";
-            descriptionTextBox.Size = new Size(780, 35);
-            descriptionTextBox.TabIndex = 22;
-            // 
-            // errorLabel
-            // 
-            errorLabel.AutoSize = true;
-            errorLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            errorLabel.ForeColor = Color.FromArgb(192, 0, 0);
-            errorLabel.Location = new Point(15, 569);
-            errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(64, 32);
-            errorLabel.TabIndex = 23;
-            errorLabel.Text = "Error";
-            // 
-            // apptTypeTextBox
-            // 
-            apptTypeTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            apptTypeTextBox.Location = new Point(160, 316);
-            apptTypeTextBox.Name = "apptTypeTextBox";
-            apptTypeTextBox.Size = new Size(233, 35);
-            apptTypeTextBox.TabIndex = 24;
-            // 
-            // locationTextBox
-            // 
-            locationTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            locationTextBox.Location = new Point(509, 316);
-            locationTextBox.Name = "locationTextBox";
-            locationTextBox.Size = new Size(283, 35);
-            locationTextBox.TabIndex = 25;
-            // 
-            // urlTextBox
-            // 
-            urlTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            urlTextBox.Location = new Point(91, 375);
-            urlTextBox.Name = "urlTextBox";
-            urlTextBox.Size = new Size(701, 35);
-            urlTextBox.TabIndex = 26;
-            // 
-            // endDateTimePicker
-            // 
-            endDateTimePicker.Location = new Point(160, 511);
-            endDateTimePicker.Name = "endDateTimePicker";
-            endDateTimePicker.Size = new Size(200, 23);
-            endDateTimePicker.TabIndex = 27;
-            // 
-            // startDateTimePicker
-            // 
-            startDateTimePicker.Location = new Point(160, 449);
-            startDateTimePicker.Name = "startDateTimePicker";
-            startDateTimePicker.Size = new Size(200, 23);
-            startDateTimePicker.TabIndex = 28;
-            // 
-            // updateAppointmentForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(838, 674);
-            Controls.Add(startDateTimePicker);
-            Controls.Add(endDateTimePicker);
-            Controls.Add(urlTextBox);
-            Controls.Add(locationTextBox);
-            Controls.Add(apptTypeTextBox);
-            Controls.Add(errorLabel);
-            Controls.Add(descriptionTextBox);
-            Controls.Add(pocTextBox);
-            Controls.Add(apptTitleTextBox);
-            Controls.Add(customerIDTextBox);
-            Controls.Add(userIDTextBox);
-            Controls.Add(newApptErrorLabel);
-            Controls.Add(cancelNewApptButton);
-            Controls.Add(createApptButton);
-            Controls.Add(endTimeLabel);
-            Controls.Add(endDateLabel);
-            Controls.Add(startTimeLabel);
-            Controls.Add(locationLabel);
-            Controls.Add(startDateLabel);
-            Controls.Add(urlLabel);
-            Controls.Add(pocLabel);
-            Controls.Add(apptTypeLabel);
-            Controls.Add(apptDescriptionLabel);
-            Controls.Add(apptTitleLabel);
-            Controls.Add(customerNumLabel);
-            Controls.Add(userIDLabel);
-            Controls.Add(apptIDTextBox);
-            Controls.Add(apptIDLabel);
-            Controls.Add(updateApptTitleLabel);
-            Name = "updateAppointmentForm";
-            Text = "addAppointmentForm";
-            ResumeLayout(false);
-            PerformLayout();
+			this.updateApptTitleLabel = new System.Windows.Forms.Label();
+			this.apptIDLabel = new System.Windows.Forms.Label();
+			this.apptIDTextBox = new System.Windows.Forms.TextBox();
+			this.userIDLabel = new System.Windows.Forms.Label();
+			this.customerNumLabel = new System.Windows.Forms.Label();
+			this.apptTitleLabel = new System.Windows.Forms.Label();
+			this.apptDescriptionLabel = new System.Windows.Forms.Label();
+			this.apptTypeLabel = new System.Windows.Forms.Label();
+			this.pocLabel = new System.Windows.Forms.Label();
+			this.urlLabel = new System.Windows.Forms.Label();
+			this.startDateLabel = new System.Windows.Forms.Label();
+			this.locationLabel = new System.Windows.Forms.Label();
+			this.endDateLabel = new System.Windows.Forms.Label();
+			this.createApptButton = new System.Windows.Forms.Button();
+			this.cancelNewApptButton = new System.Windows.Forms.Button();
+			this.newApptErrorLabel = new System.Windows.Forms.Label();
+			this.userIDTextBox = new System.Windows.Forms.TextBox();
+			this.customerIDTextBox = new System.Windows.Forms.TextBox();
+			this.apptTitleTextBox = new System.Windows.Forms.TextBox();
+			this.pocTextBox = new System.Windows.Forms.TextBox();
+			this.descriptionTextBox = new System.Windows.Forms.TextBox();
+			this.errorLabel = new System.Windows.Forms.Label();
+			this.apptTypeTextBox = new System.Windows.Forms.TextBox();
+			this.locationTextBox = new System.Windows.Forms.TextBox();
+			this.urlTextBox = new System.Windows.Forms.TextBox();
+			this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.startTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.endTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.startTimeLabel = new System.Windows.Forms.Label();
+			this.endTimeLabel = new System.Windows.Forms.Label();
+			this.SuspendLayout();
+			// 
+			// updateApptTitleLabel
+			// 
+			this.updateApptTitleLabel.AutoSize = true;
+			this.updateApptTitleLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+			this.updateApptTitleLabel.Location = new System.Drawing.Point(251, 8);
+			this.updateApptTitleLabel.Name = "updateApptTitleLabel";
+			this.updateApptTitleLabel.Size = new System.Drawing.Size(329, 45);
+			this.updateApptTitleLabel.TabIndex = 0;
+			this.updateApptTitleLabel.Text = "Update Appointment";
+			// 
+			// apptIDLabel
+			// 
+			this.apptIDLabel.AutoSize = true;
+			this.apptIDLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.apptIDLabel.Location = new System.Drawing.Point(41, 81);
+			this.apptIDLabel.Name = "apptIDLabel";
+			this.apptIDLabel.Size = new System.Drawing.Size(96, 32);
+			this.apptIDLabel.TabIndex = 1;
+			this.apptIDLabel.Text = "Appt ID";
+			// 
+			// apptIDTextBox
+			// 
+			this.apptIDTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.apptIDTextBox.Location = new System.Drawing.Point(137, 81);
+			this.apptIDTextBox.Name = "apptIDTextBox";
+			this.apptIDTextBox.Size = new System.Drawing.Size(86, 35);
+			this.apptIDTextBox.TabIndex = 2;
+			// 
+			// userIDLabel
+			// 
+			this.userIDLabel.AutoSize = true;
+			this.userIDLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.userIDLabel.Location = new System.Drawing.Point(267, 82);
+			this.userIDLabel.Name = "userIDLabel";
+			this.userIDLabel.Size = new System.Drawing.Size(83, 32);
+			this.userIDLabel.TabIndex = 3;
+			this.userIDLabel.Text = "User #";
+			// 
+			// customerNumLabel
+			// 
+			this.customerNumLabel.AutoSize = true;
+			this.customerNumLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.customerNumLabel.Location = new System.Drawing.Point(470, 85);
+			this.customerNumLabel.Name = "customerNumLabel";
+			this.customerNumLabel.Size = new System.Drawing.Size(139, 32);
+			this.customerNumLabel.TabIndex = 4;
+			this.customerNumLabel.Text = "Customer #";
+			// 
+			// apptTitleLabel
+			// 
+			this.apptTitleLabel.AutoSize = true;
+			this.apptTitleLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.apptTitleLabel.Location = new System.Drawing.Point(21, 140);
+			this.apptTitleLabel.Name = "apptTitleLabel";
+			this.apptTitleLabel.Size = new System.Drawing.Size(119, 32);
+			this.apptTitleLabel.TabIndex = 5;
+			this.apptTitleLabel.Text = "Appt Title";
+			// 
+			// apptDescriptionLabel
+			// 
+			this.apptDescriptionLabel.AutoSize = true;
+			this.apptDescriptionLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.apptDescriptionLabel.Location = new System.Drawing.Point(7, 198);
+			this.apptDescriptionLabel.Name = "apptDescriptionLabel";
+			this.apptDescriptionLabel.Size = new System.Drawing.Size(136, 32);
+			this.apptDescriptionLabel.TabIndex = 6;
+			this.apptDescriptionLabel.Text = "Description";
+			// 
+			// apptTypeLabel
+			// 
+			this.apptTypeLabel.AutoSize = true;
+			this.apptTypeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.apptTypeLabel.Location = new System.Drawing.Point(10, 274);
+			this.apptTypeLabel.Name = "apptTypeLabel";
+			this.apptTypeLabel.Size = new System.Drawing.Size(124, 32);
+			this.apptTypeLabel.TabIndex = 7;
+			this.apptTypeLabel.Text = "Appt Type";
+			// 
+			// pocLabel
+			// 
+			this.pocLabel.AutoSize = true;
+			this.pocLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.pocLabel.Location = new System.Drawing.Point(537, 137);
+			this.pocLabel.Name = "pocLabel";
+			this.pocLabel.Size = new System.Drawing.Size(61, 32);
+			this.pocLabel.TabIndex = 8;
+			this.pocLabel.Text = "POC";
+			// 
+			// urlLabel
+			// 
+			this.urlLabel.AutoSize = true;
+			this.urlLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.urlLabel.Location = new System.Drawing.Point(10, 328);
+			this.urlLabel.Name = "urlLabel";
+			this.urlLabel.Size = new System.Drawing.Size(74, 32);
+			this.urlLabel.TabIndex = 9;
+			this.urlLabel.Text = "URL? ";
+			// 
+			// startDateLabel
+			// 
+			this.startDateLabel.AutoSize = true;
+			this.startDateLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.startDateLabel.Location = new System.Drawing.Point(14, 381);
+			this.startDateLabel.Name = "startDateLabel";
+			this.startDateLabel.Size = new System.Drawing.Size(120, 32);
+			this.startDateLabel.TabIndex = 10;
+			this.startDateLabel.Text = "Start Date";
+			// 
+			// locationLabel
+			// 
+			this.locationLabel.AutoSize = true;
+			this.locationLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.locationLabel.Location = new System.Drawing.Point(342, 274);
+			this.locationLabel.Name = "locationLabel";
+			this.locationLabel.Size = new System.Drawing.Size(105, 32);
+			this.locationLabel.TabIndex = 11;
+			this.locationLabel.Text = "Location";
+			// 
+			// endDateLabel
+			// 
+			this.endDateLabel.AutoSize = true;
+			this.endDateLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.endDateLabel.Location = new System.Drawing.Point(14, 436);
+			this.endDateLabel.Name = "endDateLabel";
+			this.endDateLabel.Size = new System.Drawing.Size(112, 32);
+			this.endDateLabel.TabIndex = 13;
+			this.endDateLabel.Text = "End Date";
+			// 
+			// createApptButton
+			// 
+			this.createApptButton.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.createApptButton.Location = new System.Drawing.Point(14, 539);
+			this.createApptButton.Name = "createApptButton";
+			this.createApptButton.Size = new System.Drawing.Size(115, 34);
+			this.createApptButton.TabIndex = 15;
+			this.createApptButton.Text = "Create";
+			this.createApptButton.UseVisualStyleBackColor = true;
+			// 
+			// cancelNewApptButton
+			// 
+			this.cancelNewApptButton.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.cancelNewApptButton.Location = new System.Drawing.Point(342, 539);
+			this.cancelNewApptButton.Name = "cancelNewApptButton";
+			this.cancelNewApptButton.Size = new System.Drawing.Size(115, 34);
+			this.cancelNewApptButton.TabIndex = 16;
+			this.cancelNewApptButton.Text = "Cancel";
+			this.cancelNewApptButton.UseVisualStyleBackColor = true;
+			// 
+			// newApptErrorLabel
+			// 
+			this.newApptErrorLabel.AutoSize = true;
+			this.newApptErrorLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+			this.newApptErrorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.newApptErrorLabel.Location = new System.Drawing.Point(199, 645);
+			this.newApptErrorLabel.Name = "newApptErrorLabel";
+			this.newApptErrorLabel.Size = new System.Drawing.Size(0, 25);
+			this.newApptErrorLabel.TabIndex = 17;
+			// 
+			// userIDTextBox
+			// 
+			this.userIDTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.userIDTextBox.Location = new System.Drawing.Point(342, 82);
+			this.userIDTextBox.Name = "userIDTextBox";
+			this.userIDTextBox.Size = new System.Drawing.Size(86, 35);
+			this.userIDTextBox.TabIndex = 18;
+			// 
+			// customerIDTextBox
+			// 
+			this.customerIDTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.customerIDTextBox.Location = new System.Drawing.Point(593, 85);
+			this.customerIDTextBox.Name = "customerIDTextBox";
+			this.customerIDTextBox.Size = new System.Drawing.Size(86, 35);
+			this.customerIDTextBox.TabIndex = 19;
+			// 
+			// apptTitleTextBox
+			// 
+			this.apptTitleTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.apptTitleTextBox.Location = new System.Drawing.Point(137, 140);
+			this.apptTitleTextBox.Name = "apptTitleTextBox";
+			this.apptTitleTextBox.Size = new System.Drawing.Size(291, 35);
+			this.apptTitleTextBox.TabIndex = 20;
+			// 
+			// pocTextBox
+			// 
+			this.pocTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.pocTextBox.Location = new System.Drawing.Point(593, 137);
+			this.pocTextBox.Name = "pocTextBox";
+			this.pocTextBox.Size = new System.Drawing.Size(86, 35);
+			this.pocTextBox.TabIndex = 21;
+			// 
+			// descriptionTextBox
+			// 
+			this.descriptionTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.descriptionTextBox.Location = new System.Drawing.Point(10, 228);
+			this.descriptionTextBox.Name = "descriptionTextBox";
+			this.descriptionTextBox.Size = new System.Drawing.Size(669, 35);
+			this.descriptionTextBox.TabIndex = 22;
+			// 
+			// errorLabel
+			// 
+			this.errorLabel.AutoSize = true;
+			this.errorLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.errorLabel.Location = new System.Drawing.Point(13, 493);
+			this.errorLabel.Name = "errorLabel";
+			this.errorLabel.Size = new System.Drawing.Size(65, 32);
+			this.errorLabel.TabIndex = 23;
+			this.errorLabel.Text = "Error";
+			// 
+			// apptTypeTextBox
+			// 
+			this.apptTypeTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.apptTypeTextBox.Location = new System.Drawing.Point(137, 274);
+			this.apptTypeTextBox.Name = "apptTypeTextBox";
+			this.apptTypeTextBox.Size = new System.Drawing.Size(200, 35);
+			this.apptTypeTextBox.TabIndex = 24;
+			// 
+			// locationTextBox
+			// 
+			this.locationTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.locationTextBox.Location = new System.Drawing.Point(436, 274);
+			this.locationTextBox.Name = "locationTextBox";
+			this.locationTextBox.Size = new System.Drawing.Size(243, 35);
+			this.locationTextBox.TabIndex = 25;
+			// 
+			// urlTextBox
+			// 
+			this.urlTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+			this.urlTextBox.Location = new System.Drawing.Point(78, 325);
+			this.urlTextBox.Name = "urlTextBox";
+			this.urlTextBox.Size = new System.Drawing.Size(601, 35);
+			this.urlTextBox.TabIndex = 26;
+			// 
+			// endDateTimePicker
+			// 
+			this.endDateTimePicker.CustomFormat = "MM-dd-yyyy hh:mm";
+			this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.endDateTimePicker.Location = new System.Drawing.Point(137, 443);
+			this.endDateTimePicker.Name = "endDateTimePicker";
+			this.endDateTimePicker.Size = new System.Drawing.Size(119, 20);
+			this.endDateTimePicker.TabIndex = 27;
+			this.endDateTimePicker.ValueChanged += new System.EventHandler(this.endDateTimePicker_ValueChanged);
+			// 
+			// startDateTimePicker
+			// 
+			this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.startDateTimePicker.Location = new System.Drawing.Point(137, 389);
+			this.startDateTimePicker.Name = "startDateTimePicker";
+			this.startDateTimePicker.Size = new System.Drawing.Size(119, 20);
+			this.startDateTimePicker.TabIndex = 28;
+			// 
+			// startTimePicker
+			// 
+			this.startTimePicker.CustomFormat = "HH:mm:ss";
+			this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.startTimePicker.Location = new System.Drawing.Point(479, 390);
+			this.startTimePicker.Name = "startTimePicker";
+			this.startTimePicker.ShowUpDown = true;
+			this.startTimePicker.Size = new System.Drawing.Size(119, 20);
+			this.startTimePicker.TabIndex = 29;
+			// 
+			// endTimePicker
+			// 
+			this.endTimePicker.CustomFormat = "HH:mm:ss";
+			this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.endTimePicker.Location = new System.Drawing.Point(476, 443);
+			this.endTimePicker.Name = "endTimePicker";
+			this.endTimePicker.ShowUpDown = true;
+			this.endTimePicker.Size = new System.Drawing.Size(122, 20);
+			this.endTimePicker.TabIndex = 30;
+			// 
+			// startTimeLabel
+			// 
+			this.startTimeLabel.AutoSize = true;
+			this.startTimeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.startTimeLabel.Location = new System.Drawing.Point(353, 381);
+			this.startTimeLabel.Name = "startTimeLabel";
+			this.startTimeLabel.Size = new System.Drawing.Size(123, 32);
+			this.startTimeLabel.TabIndex = 31;
+			this.startTimeLabel.Text = "Start Time";
+			this.startTimeLabel.Click += new System.EventHandler(this.label1_Click);
+			// 
+			// endTimeLabel
+			// 
+			this.endTimeLabel.AutoSize = true;
+			this.endTimeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+			this.endTimeLabel.Location = new System.Drawing.Point(353, 436);
+			this.endTimeLabel.Name = "endTimeLabel";
+			this.endTimeLabel.Size = new System.Drawing.Size(115, 32);
+			this.endTimeLabel.TabIndex = 32;
+			this.endTimeLabel.Text = "End Time";
+			// 
+			// updateAppointmentForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(718, 584);
+			this.Controls.Add(this.endTimeLabel);
+			this.Controls.Add(this.startTimeLabel);
+			this.Controls.Add(this.endTimePicker);
+			this.Controls.Add(this.startTimePicker);
+			this.Controls.Add(this.startDateTimePicker);
+			this.Controls.Add(this.endDateTimePicker);
+			this.Controls.Add(this.urlTextBox);
+			this.Controls.Add(this.locationTextBox);
+			this.Controls.Add(this.apptTypeTextBox);
+			this.Controls.Add(this.errorLabel);
+			this.Controls.Add(this.descriptionTextBox);
+			this.Controls.Add(this.pocTextBox);
+			this.Controls.Add(this.apptTitleTextBox);
+			this.Controls.Add(this.customerIDTextBox);
+			this.Controls.Add(this.userIDTextBox);
+			this.Controls.Add(this.newApptErrorLabel);
+			this.Controls.Add(this.cancelNewApptButton);
+			this.Controls.Add(this.createApptButton);
+			this.Controls.Add(this.endDateLabel);
+			this.Controls.Add(this.locationLabel);
+			this.Controls.Add(this.startDateLabel);
+			this.Controls.Add(this.urlLabel);
+			this.Controls.Add(this.pocLabel);
+			this.Controls.Add(this.apptTypeLabel);
+			this.Controls.Add(this.apptDescriptionLabel);
+			this.Controls.Add(this.apptTitleLabel);
+			this.Controls.Add(this.customerNumLabel);
+			this.Controls.Add(this.userIDLabel);
+			this.Controls.Add(this.apptIDTextBox);
+			this.Controls.Add(this.apptIDLabel);
+			this.Controls.Add(this.updateApptTitleLabel);
+			this.Name = "updateAppointmentForm";
+			this.Text = "addAppointmentForm";
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
         }
 
         #endregion
@@ -383,9 +413,7 @@ namespace CalendarTool
         private Label urlLabel;
         private Label startDateLabel;
         private Label locationLabel;
-        private Label startTimeLabel;
         private Label endDateLabel;
-        private Label endTimeLabel;
         private Button createApptButton;
         private Button cancelNewApptButton;
         private Label newApptErrorLabel;
@@ -400,5 +428,9 @@ namespace CalendarTool
         private TextBox urlTextBox;
         private DateTimePicker endDateTimePicker;
         private DateTimePicker startDateTimePicker;
-    }
+		private DateTimePicker startTimePicker;
+		private DateTimePicker endTimePicker;
+		private Label startTimeLabel;
+		private Label endTimeLabel;
+	}
 }
