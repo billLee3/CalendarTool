@@ -16,5 +16,13 @@ namespace CalendarTool
         {
             InitializeComponent();
         }
-    }
+
+		private void createApptButton_Click(object sender, EventArgs e)
+		{
+            startDateTimePicker.Format = DateTimePickerFormat.Custom;
+            startDateTimePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+
+		}
+	}
 }

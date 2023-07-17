@@ -58,10 +58,6 @@ namespace CalendarTool
 			this.urlTextBox = new System.Windows.Forms.TextBox();
 			this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
-			this.startTimePicker = new System.Windows.Forms.DateTimePicker();
-			this.endTimePicker = new System.Windows.Forms.DateTimePicker();
-			this.startTimeLabel = new System.Windows.Forms.Label();
-			this.endTimeLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// updateApptTitleLabel
@@ -201,6 +197,7 @@ namespace CalendarTool
 			this.createApptButton.TabIndex = 15;
 			this.createApptButton.Text = "Create";
 			this.createApptButton.UseVisualStyleBackColor = true;
+			this.createApptButton.Click += new System.EventHandler(this.createApptButton_Click);
 			// 
 			// cancelNewApptButton
 			// 
@@ -299,72 +296,33 @@ namespace CalendarTool
 			// 
 			// endDateTimePicker
 			// 
-			this.endDateTimePicker.CustomFormat = "MM-dd-yyyy hh:mm";
-			this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.endDateTimePicker.CustomFormat = "MM-dd-yyyy hh:mm:ss";
+			this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.endDateTimePicker.Location = new System.Drawing.Point(137, 443);
 			this.endDateTimePicker.Name = "endDateTimePicker";
-			this.endDateTimePicker.Size = new System.Drawing.Size(119, 20);
+			this.endDateTimePicker.Size = new System.Drawing.Size(213, 20);
 			this.endDateTimePicker.TabIndex = 27;
 			this.endDateTimePicker.ValueChanged += new System.EventHandler(this.endDateTimePicker_ValueChanged);
 			// 
 			// startDateTimePicker
 			// 
-			this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.startDateTimePicker.Checked = false;
+			this.startDateTimePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+			this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.startDateTimePicker.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.startDateTimePicker.Location = new System.Drawing.Point(137, 389);
 			this.startDateTimePicker.Name = "startDateTimePicker";
-			this.startDateTimePicker.Size = new System.Drawing.Size(119, 20);
-			this.startDateTimePicker.TabIndex = 28;
-			// 
-			// startTimePicker
-			// 
-			this.startTimePicker.CustomFormat = "HH:mm:ss";
-			this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.startTimePicker.Location = new System.Drawing.Point(479, 390);
-			this.startTimePicker.Name = "startTimePicker";
-			this.startTimePicker.ShowUpDown = true;
-			this.startTimePicker.Size = new System.Drawing.Size(119, 20);
-			this.startTimePicker.TabIndex = 29;
-			// 
-			// endTimePicker
-			// 
-			this.endTimePicker.CustomFormat = "HH:mm:ss";
-			this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.endTimePicker.Location = new System.Drawing.Point(476, 443);
-			this.endTimePicker.Name = "endTimePicker";
-			this.endTimePicker.ShowUpDown = true;
-			this.endTimePicker.Size = new System.Drawing.Size(122, 20);
-			this.endTimePicker.TabIndex = 30;
-			// 
-			// startTimeLabel
-			// 
-			this.startTimeLabel.AutoSize = true;
-			this.startTimeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
-			this.startTimeLabel.Location = new System.Drawing.Point(353, 381);
-			this.startTimeLabel.Name = "startTimeLabel";
-			this.startTimeLabel.Size = new System.Drawing.Size(123, 32);
-			this.startTimeLabel.TabIndex = 31;
-			this.startTimeLabel.Text = "Start Time";
-			this.startTimeLabel.Click += new System.EventHandler(this.label1_Click);
-			// 
-			// endTimeLabel
-			// 
-			this.endTimeLabel.AutoSize = true;
-			this.endTimeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
-			this.endTimeLabel.Location = new System.Drawing.Point(353, 436);
-			this.endTimeLabel.Name = "endTimeLabel";
-			this.endTimeLabel.Size = new System.Drawing.Size(115, 32);
-			this.endTimeLabel.TabIndex = 32;
-			this.endTimeLabel.Text = "End Time";
+			this.startDateTimePicker.Size = new System.Drawing.Size(210, 20);
+			this.startDateTimePicker.TabIndex = 10;
+			this.startDateTimePicker.TabStop = false;
+			this.startDateTimePicker.Value = new System.DateTime(2023, 7, 16, 22, 33, 9, 0);
+			this.startDateTimePicker.ValueChanged += new System.EventHandler(this.startDateTimePicker_ValueChanged);
 			// 
 			// updateAppointmentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(718, 584);
-			this.Controls.Add(this.endTimeLabel);
-			this.Controls.Add(this.startTimeLabel);
-			this.Controls.Add(this.endTimePicker);
-			this.Controls.Add(this.startTimePicker);
 			this.Controls.Add(this.startDateTimePicker);
 			this.Controls.Add(this.endDateTimePicker);
 			this.Controls.Add(this.urlTextBox);
@@ -428,9 +386,5 @@ namespace CalendarTool
         private TextBox urlTextBox;
         private DateTimePicker endDateTimePicker;
         private DateTimePicker startDateTimePicker;
-		private DateTimePicker startTimePicker;
-		private DateTimePicker endTimePicker;
-		private Label startTimeLabel;
-		private Label endTimeLabel;
 	}
 }

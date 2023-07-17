@@ -61,16 +61,10 @@ namespace CalendarTool
                     urlTextBox.Text = url;
 
                     DateTime startDateTime = row1.Field<DateTime>("start");
-                    startDateTimePicker.Value = startDateTime;
-
-                    DateTime startTime = startDateTime.ToLocalTime();
-                    startTimePicker.Value = startTime;
+                    startDateTimePicker.Value = startDateTime.ToLocalTime();
 
                     DateTime endDateTime = row1.Field<DateTime>("end");
-                    endDateTimePicker.Value = endDateTime;
-
-                    DateTime endTime = endDateTime.ToLocalTime();
-                    endTimePicker.Value = endTime;
+                    endDateTimePicker.Value = endDateTime.ToLocalTime();
                 }
             }
                 //Fill in the data from the database to the entries. 
@@ -82,6 +76,37 @@ namespace CalendarTool
 		}
 
 		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+        //Need help here
+		private void createApptButton_Click(object sender, EventArgs e)
+		{
+            int apptID = int.Parse(apptIDTextBox.Text);
+            int customerID = int.Parse(customerIDTextBox.Text);
+            int userID = int.Parse(userIDTextBox.Text);
+            startDateTimePicker.Value.ToUniversalTime();
+            string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            endDateTimePicker.Value.ToUniversalTime();
+            string endDate = endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{apptTypeTextBox.Text}', url = '{urlTextBox.Text}', start = '{startDate}', end = '{endDate}' WHERE appointmentId = '{apptID}'";
+            
+            
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(updateApptQuery, Database.dbConnection.conn))
+            {
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+            }
+
+            dashboard dashboard = new dashboard();
+            dashboard.Show();
+            Close();
+
+            //Figure out how to refresh the datagridview after this entry. 
+        }
+
+		private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
 		{
 
 		}

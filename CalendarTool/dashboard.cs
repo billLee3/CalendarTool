@@ -86,6 +86,8 @@ namespace CalendarTool
                 updateAppointmentForm updateForm = new updateAppointmentForm((int)selectedApptID);
                 updateForm.Show();
             }
+
+            Close();
 		}
 
 		private void deleteApptButton_Click(object sender, EventArgs e)
