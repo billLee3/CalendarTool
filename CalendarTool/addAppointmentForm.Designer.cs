@@ -43,9 +43,7 @@ namespace CalendarTool
 			this.urlLabel = new System.Windows.Forms.Label();
 			this.startDateLabel = new System.Windows.Forms.Label();
 			this.locationLabel = new System.Windows.Forms.Label();
-			this.startTimeLabel = new System.Windows.Forms.Label();
 			this.endDateLabel = new System.Windows.Forms.Label();
-			this.endTimeLabel = new System.Windows.Forms.Label();
 			this.createApptButton = new System.Windows.Forms.Button();
 			this.cancelNewApptButton = new System.Windows.Forms.Button();
 			this.newApptErrorLabel = new System.Windows.Forms.Label();
@@ -166,9 +164,9 @@ namespace CalendarTool
 			this.startDateLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
 			this.startDateLabel.Location = new System.Drawing.Point(14, 381);
 			this.startDateLabel.Name = "startDateLabel";
-			this.startDateLabel.Size = new System.Drawing.Size(120, 32);
+			this.startDateLabel.Size = new System.Drawing.Size(63, 32);
 			this.startDateLabel.TabIndex = 10;
-			this.startDateLabel.Text = "Start Date";
+			this.startDateLabel.Text = "Start";
 			// 
 			// locationLabel
 			// 
@@ -180,35 +178,15 @@ namespace CalendarTool
 			this.locationLabel.TabIndex = 11;
 			this.locationLabel.Text = "Location";
 			// 
-			// startTimeLabel
-			// 
-			this.startTimeLabel.AutoSize = true;
-			this.startTimeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
-			this.startTimeLabel.Location = new System.Drawing.Point(342, 381);
-			this.startTimeLabel.Name = "startTimeLabel";
-			this.startTimeLabel.Size = new System.Drawing.Size(123, 32);
-			this.startTimeLabel.TabIndex = 12;
-			this.startTimeLabel.Text = "Start Time";
-			// 
 			// endDateLabel
 			// 
 			this.endDateLabel.AutoSize = true;
 			this.endDateLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
 			this.endDateLabel.Location = new System.Drawing.Point(14, 436);
 			this.endDateLabel.Name = "endDateLabel";
-			this.endDateLabel.Size = new System.Drawing.Size(112, 32);
+			this.endDateLabel.Size = new System.Drawing.Size(55, 32);
 			this.endDateLabel.TabIndex = 13;
-			this.endDateLabel.Text = "End Date";
-			// 
-			// endTimeLabel
-			// 
-			this.endTimeLabel.AutoSize = true;
-			this.endTimeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
-			this.endTimeLabel.Location = new System.Drawing.Point(349, 436);
-			this.endTimeLabel.Name = "endTimeLabel";
-			this.endTimeLabel.Size = new System.Drawing.Size(115, 32);
-			this.endTimeLabel.TabIndex = 14;
-			this.endTimeLabel.Text = "End Time";
+			this.endDateLabel.Text = "End";
 			// 
 			// createApptButton
 			// 
@@ -353,9 +331,7 @@ namespace CalendarTool
 			this.Controls.Add(this.newApptErrorLabel);
 			this.Controls.Add(this.cancelNewApptButton);
 			this.Controls.Add(this.createApptButton);
-			this.Controls.Add(this.endTimeLabel);
 			this.Controls.Add(this.endDateLabel);
-			this.Controls.Add(this.startTimeLabel);
 			this.Controls.Add(this.locationLabel);
 			this.Controls.Add(this.startDateLabel);
 			this.Controls.Add(this.urlLabel);
@@ -389,9 +365,7 @@ namespace CalendarTool
         private Label urlLabel;
         private Label startDateLabel;
         private Label locationLabel;
-        private Label startTimeLabel;
         private Label endDateLabel;
-        private Label endTimeLabel;
         private Button createApptButton;
         private Button cancelNewApptButton;
         private Label newApptErrorLabel;
