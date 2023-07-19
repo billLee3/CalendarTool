@@ -92,6 +92,18 @@ namespace CalendarTool
 
 		private void deleteApptButton_Click(object sender, EventArgs e)
 		{
+            var selectedRowIndex = (int)(appointmentsDGV.CurrentCell.RowIndex);
+            var selectedApptID = appointmentsDGV.Rows[selectedRowIndex].Cells[0].Value;
+
+            if (selectedApptID != null) {
+                string deleteQuery = $"DELETE FROM appointment WHERE appointmentId = {selectedApptID}";
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(deleteQuery, Database.dbConnection.conn))
+                {
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                }
+            }
+
             confirmDeleteForm confirmDelete = new confirmDeleteForm();
             confirmDelete.Show();
 		}

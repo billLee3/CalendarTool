@@ -87,9 +87,12 @@ namespace CalendarTool
             int customerID = int.Parse(customerIDTextBox.Text);
             int userID = int.Parse(userIDTextBox.Text);
             startDateTimePicker.Value.ToUniversalTime();
+            
             string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime startDateTime = DateTime.Parse(startDate);
             endDateTimePicker.Value.ToUniversalTime();
             string endDate = endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime endDateTime = DateTime.Parse(endDate);
             string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{apptTypeTextBox.Text}', url = '{urlTextBox.Text}', start = '{startDate}', end = '{endDate}' WHERE appointmentId = '{apptID}'";
             
             
