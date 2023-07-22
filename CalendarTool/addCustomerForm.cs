@@ -126,17 +126,52 @@ namespace CalendarTool
             }
             return -1;
         }
-        public void createAddress()
+        public void createAddress(string addressName, int cityId)
         {
-            //Takes City Code
-
-            //if address exists then do nothing
-
-            //else add city to database
-
-            //return ID
+            int country = cityId;
+            string postalCode = zipTextBox.Text;
+            string phoneNum = phoneNumTextBox.Text;
+            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string createdBy = "test";
+            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string lastUpdateBy = "test";
+            //LEFT OFF HERE
+            string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {cityId}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{createdBy}', '{lastUpdate}', '{lastUpdateBy}')";
+            MySqlCommand cmd = new MySqlCommand(createAddressQuery, Database.dbConnection.conn);
+            cmd.ExecuteScalar();
         }
 
+        public int isCustomer(string customerName)
+        {
+            string customerQuery = $"SELECT customerId FROM customer WHERE customerName = {customerName}";
+            MySqlCommand cmd = new MySqlCommand(customerQuery, Database.dbConnection.conn);
+            try
+            {
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    int id = Convert.ToInt32(result);
+                    return id;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+            return -1;
+        }
+
+        public void createCustomer(int addressId)
+        {
+            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string createdBy = "test";
+            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string lastUpdateBy = "test";
+            string createCustomer = $"INSERT INTO customer(customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{customerNameTextBox.Text}', {addressId}, 1, '{createDate}', '{createdBy}', '{lastUpdate}', '{lastUpdateBy}')";
+            MySqlCommand cmd = new MySqlCommand(createCustomer, Database.dbConnection.conn);
+            cmd.ExecuteScalar();
+        }
         private void createCustomerButton_Click(object sender, EventArgs e)
         {
             int countryID = createCountry();
@@ -146,12 +181,31 @@ namespace CalendarTool
                 createCity(cityTextBox.Text, countryID);
                 cityId = isCity(cityTextBox.Text);
             }
+
+            int customerId = isCustomer(customerNameTextBox.Text);
+            if (customerId != -1)
+            {
+                if (isAddress(address1TextBox.Text) != -1)
+                {
+                    MessageBox.Show("Customer already exists. ");
+                }
+            }
+            else
+            {
+                createAddress(address1TextBox.Text, cityId);
+                int addressId = isAddress(address1TextBox.Text);
+                createCustomer(addressId);
+                MessageBox.Show("Created new customer!");
+            }
             
-            MessageBox.Show(cityId.ToString());
+
+            
+            //Run IsCustomer
+            //If it is run is address
+
+            //If it isn't then create the customer.  
             
 
         }
-
-        //Save button
     }
 }
