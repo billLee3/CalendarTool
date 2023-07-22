@@ -32,286 +32,288 @@ namespace CalendarTool
         /// </summary>
         private void InitializeComponent()
         {
-            newCustomerTitleLabel = new Label();
-            customerNumLabel = new Label();
-            errorLabel = new Label();
-            customerNameLabel = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            countryLabel = new Label();
-            zipcodeLabel = new Label();
-            phoneNumLabel = new Label();
-            activeLabel = new Label();
-            customerNumTextBox = new TextBox();
-            cityTextBox = new TextBox();
-            address2TextBox = new TextBox();
-            address1TextBox = new TextBox();
-            customerNameTextBox = new TextBox();
-            countryTextBox = new TextBox();
-            zipTextBox = new TextBox();
-            phoneNumTextBox = new TextBox();
-            activeTextbox = new TextBox();
-            label2 = new Label();
-            stateTextBox = new TextBox();
-            createCustomerButton = new Button();
-            cancelButton = new Button();
-            SuspendLayout();
+            this.newCustomerTitleLabel = new System.Windows.Forms.Label();
+            this.customerNumLabel = new System.Windows.Forms.Label();
+            this.errorLabel = new System.Windows.Forms.Label();
+            this.customerNameLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.countryLabel = new System.Windows.Forms.Label();
+            this.zipcodeLabel = new System.Windows.Forms.Label();
+            this.phoneNumLabel = new System.Windows.Forms.Label();
+            this.activeLabel = new System.Windows.Forms.Label();
+            this.customerNumTextBox = new System.Windows.Forms.TextBox();
+            this.cityTextBox = new System.Windows.Forms.TextBox();
+            this.address2TextBox = new System.Windows.Forms.TextBox();
+            this.address1TextBox = new System.Windows.Forms.TextBox();
+            this.customerNameTextBox = new System.Windows.Forms.TextBox();
+            this.countryTextBox = new System.Windows.Forms.TextBox();
+            this.zipTextBox = new System.Windows.Forms.TextBox();
+            this.phoneNumTextBox = new System.Windows.Forms.TextBox();
+            this.activeTextbox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.stateTextBox = new System.Windows.Forms.TextBox();
+            this.createCustomerButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // newCustomerTitleLabel
             // 
-            newCustomerTitleLabel.AutoSize = true;
-            newCustomerTitleLabel.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            newCustomerTitleLabel.Location = new Point(167, 20);
-            newCustomerTitleLabel.Name = "newCustomerTitleLabel";
-            newCustomerTitleLabel.Size = new Size(236, 45);
-            newCustomerTitleLabel.TabIndex = 1;
-            newCustomerTitleLabel.Text = "New Customer";
+            this.newCustomerTitleLabel.AutoSize = true;
+            this.newCustomerTitleLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.newCustomerTitleLabel.Location = new System.Drawing.Point(143, 17);
+            this.newCustomerTitleLabel.Name = "newCustomerTitleLabel";
+            this.newCustomerTitleLabel.Size = new System.Drawing.Size(236, 45);
+            this.newCustomerTitleLabel.TabIndex = 1;
+            this.newCustomerTitleLabel.Text = "New Customer";
             // 
             // customerNumLabel
             // 
-            customerNumLabel.AutoSize = true;
-            customerNumLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            customerNumLabel.Location = new Point(52, 85);
-            customerNumLabel.Name = "customerNumLabel";
-            customerNumLabel.Size = new Size(138, 32);
-            customerNumLabel.TabIndex = 2;
-            customerNumLabel.Text = "Customer #";
+            this.customerNumLabel.AutoSize = true;
+            this.customerNumLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.customerNumLabel.Location = new System.Drawing.Point(45, 74);
+            this.customerNumLabel.Name = "customerNumLabel";
+            this.customerNumLabel.Size = new System.Drawing.Size(139, 32);
+            this.customerNumLabel.TabIndex = 2;
+            this.customerNumLabel.Text = "Customer #";
             // 
             // errorLabel
             // 
-            errorLabel.AutoSize = true;
-            errorLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            errorLabel.ForeColor = Color.FromArgb(192, 0, 0);
-            errorLabel.Location = new Point(261, 547);
-            errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(64, 32);
-            errorLabel.TabIndex = 3;
-            errorLabel.Text = "Error";
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.errorLabel.Location = new System.Drawing.Point(224, 474);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(65, 32);
+            this.errorLabel.TabIndex = 3;
+            this.errorLabel.Text = "Error";
             // 
             // customerNameLabel
             // 
-            customerNameLabel.AutoSize = true;
-            customerNameLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            customerNameLabel.Location = new Point(52, 134);
-            customerNameLabel.Name = "customerNameLabel";
-            customerNameLabel.Size = new Size(78, 32);
-            customerNameLabel.TabIndex = 4;
-            customerNameLabel.Text = "Name";
+            this.customerNameLabel.AutoSize = true;
+            this.customerNameLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.customerNameLabel.Location = new System.Drawing.Point(45, 116);
+            this.customerNameLabel.Name = "customerNameLabel";
+            this.customerNameLabel.Size = new System.Drawing.Size(79, 32);
+            this.customerNameLabel.TabIndex = 4;
+            this.customerNameLabel.Text = "Name";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(52, 183);
-            label3.Name = "label3";
-            label3.Size = new Size(169, 32);
-            label3.TabIndex = 5;
-            label3.Text = "Address Line 1";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label3.Location = new System.Drawing.Point(45, 159);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(170, 32);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Address Line 1";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(52, 234);
-            label4.Name = "label4";
-            label4.Size = new Size(169, 32);
-            label4.TabIndex = 6;
-            label4.Text = "Address Line 2";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label4.Location = new System.Drawing.Point(45, 203);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(170, 32);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Address Line 2";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(52, 281);
-            label5.Name = "label5";
-            label5.Size = new Size(55, 32);
-            label5.TabIndex = 7;
-            label5.Text = "City";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label5.Location = new System.Drawing.Point(45, 244);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 32);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "City";
             // 
             // countryLabel
             // 
-            countryLabel.AutoSize = true;
-            countryLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            countryLabel.Location = new Point(52, 330);
-            countryLabel.Name = "countryLabel";
-            countryLabel.Size = new Size(99, 32);
-            countryLabel.TabIndex = 8;
-            countryLabel.Text = "Country";
+            this.countryLabel.AutoSize = true;
+            this.countryLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.countryLabel.Location = new System.Drawing.Point(45, 286);
+            this.countryLabel.Name = "countryLabel";
+            this.countryLabel.Size = new System.Drawing.Size(100, 32);
+            this.countryLabel.TabIndex = 8;
+            this.countryLabel.Text = "Country";
             // 
             // zipcodeLabel
             // 
-            zipcodeLabel.AutoSize = true;
-            zipcodeLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            zipcodeLabel.Location = new Point(52, 414);
-            zipcodeLabel.Name = "zipcodeLabel";
-            zipcodeLabel.Size = new Size(100, 32);
-            zipcodeLabel.TabIndex = 9;
-            zipcodeLabel.Text = "Zipcode";
+            this.zipcodeLabel.AutoSize = true;
+            this.zipcodeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.zipcodeLabel.Location = new System.Drawing.Point(45, 359);
+            this.zipcodeLabel.Name = "zipcodeLabel";
+            this.zipcodeLabel.Size = new System.Drawing.Size(101, 32);
+            this.zipcodeLabel.TabIndex = 9;
+            this.zipcodeLabel.Text = "Zipcode";
             // 
             // phoneNumLabel
             // 
-            phoneNumLabel.AutoSize = true;
-            phoneNumLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            phoneNumLabel.Location = new Point(52, 463);
-            phoneNumLabel.Name = "phoneNumLabel";
-            phoneNumLabel.Size = new Size(103, 32);
-            phoneNumLabel.TabIndex = 10;
-            phoneNumLabel.Text = "Phone #";
+            this.phoneNumLabel.AutoSize = true;
+            this.phoneNumLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.phoneNumLabel.Location = new System.Drawing.Point(45, 401);
+            this.phoneNumLabel.Name = "phoneNumLabel";
+            this.phoneNumLabel.Size = new System.Drawing.Size(104, 32);
+            this.phoneNumLabel.TabIndex = 10;
+            this.phoneNumLabel.Text = "Phone #";
             // 
             // activeLabel
             // 
-            activeLabel.AutoSize = true;
-            activeLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            activeLabel.Location = new Point(52, 512);
-            activeLabel.Name = "activeLabel";
-            activeLabel.Size = new Size(79, 32);
-            activeLabel.TabIndex = 11;
-            activeLabel.Text = "Active";
+            this.activeLabel.AutoSize = true;
+            this.activeLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.activeLabel.Location = new System.Drawing.Point(45, 444);
+            this.activeLabel.Name = "activeLabel";
+            this.activeLabel.Size = new System.Drawing.Size(80, 32);
+            this.activeLabel.TabIndex = 11;
+            this.activeLabel.Text = "Active";
             // 
             // customerNumTextBox
             // 
-            customerNumTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            customerNumTextBox.Location = new Point(235, 82);
-            customerNumTextBox.Name = "customerNumTextBox";
-            customerNumTextBox.Size = new Size(298, 35);
-            customerNumTextBox.TabIndex = 12;
+            this.customerNumTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.customerNumTextBox.Location = new System.Drawing.Point(201, 71);
+            this.customerNumTextBox.Name = "customerNumTextBox";
+            this.customerNumTextBox.Size = new System.Drawing.Size(256, 35);
+            this.customerNumTextBox.TabIndex = 12;
             // 
             // cityTextBox
             // 
-            cityTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            cityTextBox.Location = new Point(235, 280);
-            cityTextBox.Name = "cityTextBox";
-            cityTextBox.Size = new Size(298, 35);
-            cityTextBox.TabIndex = 13;
+            this.cityTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.cityTextBox.Location = new System.Drawing.Point(201, 243);
+            this.cityTextBox.Name = "cityTextBox";
+            this.cityTextBox.Size = new System.Drawing.Size(256, 35);
+            this.cityTextBox.TabIndex = 13;
             // 
             // address2TextBox
             // 
-            address2TextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            address2TextBox.Location = new Point(235, 231);
-            address2TextBox.Name = "address2TextBox";
-            address2TextBox.Size = new Size(298, 35);
-            address2TextBox.TabIndex = 14;
+            this.address2TextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.address2TextBox.Location = new System.Drawing.Point(201, 200);
+            this.address2TextBox.Name = "address2TextBox";
+            this.address2TextBox.Size = new System.Drawing.Size(256, 35);
+            this.address2TextBox.TabIndex = 14;
             // 
             // address1TextBox
             // 
-            address1TextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            address1TextBox.Location = new Point(235, 183);
-            address1TextBox.Name = "address1TextBox";
-            address1TextBox.Size = new Size(298, 35);
-            address1TextBox.TabIndex = 15;
+            this.address1TextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.address1TextBox.Location = new System.Drawing.Point(201, 159);
+            this.address1TextBox.Name = "address1TextBox";
+            this.address1TextBox.Size = new System.Drawing.Size(256, 35);
+            this.address1TextBox.TabIndex = 15;
             // 
             // customerNameTextBox
             // 
-            customerNameTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            customerNameTextBox.Location = new Point(235, 131);
-            customerNameTextBox.Name = "customerNameTextBox";
-            customerNameTextBox.Size = new Size(298, 35);
-            customerNameTextBox.TabIndex = 16;
+            this.customerNameTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.customerNameTextBox.Location = new System.Drawing.Point(201, 114);
+            this.customerNameTextBox.Name = "customerNameTextBox";
+            this.customerNameTextBox.Size = new System.Drawing.Size(256, 35);
+            this.customerNameTextBox.TabIndex = 16;
             // 
             // countryTextBox
             // 
-            countryTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            countryTextBox.Location = new Point(235, 330);
-            countryTextBox.Name = "countryTextBox";
-            countryTextBox.Size = new Size(298, 35);
-            countryTextBox.TabIndex = 17;
+            this.countryTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.countryTextBox.Location = new System.Drawing.Point(201, 286);
+            this.countryTextBox.Name = "countryTextBox";
+            this.countryTextBox.Size = new System.Drawing.Size(256, 35);
+            this.countryTextBox.TabIndex = 17;
             // 
             // zipTextBox
             // 
-            zipTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            zipTextBox.Location = new Point(235, 413);
-            zipTextBox.Name = "zipTextBox";
-            zipTextBox.Size = new Size(298, 35);
-            zipTextBox.TabIndex = 18;
+            this.zipTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.zipTextBox.Location = new System.Drawing.Point(201, 358);
+            this.zipTextBox.Name = "zipTextBox";
+            this.zipTextBox.Size = new System.Drawing.Size(256, 35);
+            this.zipTextBox.TabIndex = 18;
             // 
             // phoneNumTextBox
             // 
-            phoneNumTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            phoneNumTextBox.Location = new Point(235, 462);
-            phoneNumTextBox.Name = "phoneNumTextBox";
-            phoneNumTextBox.Size = new Size(298, 35);
-            phoneNumTextBox.TabIndex = 19;
+            this.phoneNumTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.phoneNumTextBox.Location = new System.Drawing.Point(201, 400);
+            this.phoneNumTextBox.Name = "phoneNumTextBox";
+            this.phoneNumTextBox.Size = new System.Drawing.Size(256, 35);
+            this.phoneNumTextBox.TabIndex = 19;
             // 
             // activeTextbox
             // 
-            activeTextbox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            activeTextbox.Location = new Point(235, 509);
-            activeTextbox.Name = "activeTextbox";
-            activeTextbox.Size = new Size(298, 35);
-            activeTextbox.TabIndex = 20;
+            this.activeTextbox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.activeTextbox.Location = new System.Drawing.Point(201, 441);
+            this.activeTextbox.Name = "activeTextbox";
+            this.activeTextbox.Size = new System.Drawing.Size(256, 35);
+            this.activeTextbox.TabIndex = 20;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(52, 372);
-            label2.Name = "label2";
-            label2.Size = new Size(167, 32);
-            label2.TabIndex = 22;
-            label2.Text = "State/Province";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label2.Location = new System.Drawing.Point(45, 322);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(168, 32);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "State/Province";
             // 
             // stateTextBox
             // 
-            stateTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            stateTextBox.Location = new Point(235, 372);
-            stateTextBox.Name = "stateTextBox";
-            stateTextBox.Size = new Size(298, 35);
-            stateTextBox.TabIndex = 23;
+            this.stateTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.stateTextBox.Location = new System.Drawing.Point(201, 322);
+            this.stateTextBox.Name = "stateTextBox";
+            this.stateTextBox.Size = new System.Drawing.Size(256, 35);
+            this.stateTextBox.TabIndex = 23;
             // 
             // createCustomerButton
             // 
-            createCustomerButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            createCustomerButton.Location = new Point(144, 598);
-            createCustomerButton.Name = "createCustomerButton";
-            createCustomerButton.Size = new Size(99, 43);
-            createCustomerButton.TabIndex = 24;
-            createCustomerButton.Text = "Create";
-            createCustomerButton.UseVisualStyleBackColor = true;
+            this.createCustomerButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.createCustomerButton.Location = new System.Drawing.Point(123, 518);
+            this.createCustomerButton.Name = "createCustomerButton";
+            this.createCustomerButton.Size = new System.Drawing.Size(85, 37);
+            this.createCustomerButton.TabIndex = 24;
+            this.createCustomerButton.Text = "Create";
+            this.createCustomerButton.UseVisualStyleBackColor = true;
+            this.createCustomerButton.Click += new System.EventHandler(this.createCustomerButton_Click);
             // 
             // cancelButton
             // 
-            cancelButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            cancelButton.Location = new Point(334, 598);
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(99, 43);
-            cancelButton.TabIndex = 25;
-            cancelButton.Text = "Cancel";
-            cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.cancelButton.Location = new System.Drawing.Point(286, 518);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(85, 37);
+            this.cancelButton.TabIndex = 25;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // addCustomerForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(576, 646);
-            Controls.Add(cancelButton);
-            Controls.Add(createCustomerButton);
-            Controls.Add(stateTextBox);
-            Controls.Add(label2);
-            Controls.Add(activeTextbox);
-            Controls.Add(phoneNumTextBox);
-            Controls.Add(zipTextBox);
-            Controls.Add(countryTextBox);
-            Controls.Add(customerNameTextBox);
-            Controls.Add(address1TextBox);
-            Controls.Add(address2TextBox);
-            Controls.Add(cityTextBox);
-            Controls.Add(customerNumTextBox);
-            Controls.Add(activeLabel);
-            Controls.Add(phoneNumLabel);
-            Controls.Add(zipcodeLabel);
-            Controls.Add(countryLabel);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(customerNameLabel);
-            Controls.Add(errorLabel);
-            Controls.Add(customerNumLabel);
-            Controls.Add(newCustomerTitleLabel);
-            Name = "addCustomerForm";
-            Text = "addCustomerForm";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(494, 560);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.createCustomerButton);
+            this.Controls.Add(this.stateTextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.activeTextbox);
+            this.Controls.Add(this.phoneNumTextBox);
+            this.Controls.Add(this.zipTextBox);
+            this.Controls.Add(this.countryTextBox);
+            this.Controls.Add(this.customerNameTextBox);
+            this.Controls.Add(this.address1TextBox);
+            this.Controls.Add(this.address2TextBox);
+            this.Controls.Add(this.cityTextBox);
+            this.Controls.Add(this.customerNumTextBox);
+            this.Controls.Add(this.activeLabel);
+            this.Controls.Add(this.phoneNumLabel);
+            this.Controls.Add(this.zipcodeLabel);
+            this.Controls.Add(this.countryLabel);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.customerNameLabel);
+            this.Controls.Add(this.errorLabel);
+            this.Controls.Add(this.customerNumLabel);
+            this.Controls.Add(this.newCustomerTitleLabel);
+            this.Name = "addCustomerForm";
+            this.Text = "addCustomerForm";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
