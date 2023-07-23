@@ -94,10 +94,6 @@ namespace CalendarTool
 		{
             var selectedRowIndex = (int)(appointmentsDGV.CurrentCell.RowIndex);
             var selectedApptID = appointmentsDGV.Rows[selectedRowIndex].Cells[0].Value;
-
-           //WHERE I COPIED FROM
-
-            
             confirmDeleteForm confirmDelete = new confirmDeleteForm("appointment", selectedApptID);
             confirmDelete.Show();
 		}
