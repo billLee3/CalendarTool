@@ -95,16 +95,10 @@ namespace CalendarTool
             var selectedRowIndex = (int)(appointmentsDGV.CurrentCell.RowIndex);
             var selectedApptID = appointmentsDGV.Rows[selectedRowIndex].Cells[0].Value;
 
-            if (selectedApptID != null) {
-                string deleteQuery = $"DELETE FROM appointment WHERE appointmentId = {selectedApptID}";
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(deleteQuery, Database.dbConnection.conn))
-                {
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                }
-            }
+           //WHERE I COPIED FROM
 
-            confirmDeleteForm confirmDelete = new confirmDeleteForm();
+            
+            confirmDeleteForm confirmDelete = new confirmDeleteForm("appointment", selectedApptID);
             confirmDelete.Show();
 		}
 
@@ -131,19 +125,9 @@ namespace CalendarTool
             var selectedRowIndex = (int)(customersDGV.CurrentCell.RowIndex);
             var selectedCustID = customersDGV.Rows[selectedRowIndex].Cells[0].Value;
 
-            if (selectedCustID != null)
-            {
-                string deleteQuery = $"DELETE FROM customer WHERE customerId = {selectedCustID}";
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(deleteQuery, Database.dbConnection.conn))
-                {
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                }
-            }
-
-            confirmDeleteForm confirmDelete = new confirmDeleteForm();
+            confirmDeleteForm confirmDelete = new confirmDeleteForm("customer", selectedCustID);
             confirmDelete.Show();
-            
+            Close();
         }
 	}
 }

@@ -111,6 +111,7 @@
       <DependentUpon>dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Database\dbConnection.cs" />
+    <Compile Include="GlobalConfig.cs" />
     <Compile Include="GlobalValues.es-MX.Designer.cs">
       <DependentUpon>GlobalValues.es-MX.resx</DependentUpon>
       <AutoGen>True</AutoGen>

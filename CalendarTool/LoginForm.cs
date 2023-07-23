@@ -26,7 +26,7 @@ namespace CalendarTool
         {
             //add logic to determine if the username is in the database. 
             //if the username is in the database does the password match? 
-            string userQuery = "Select * from user";
+            string userQuery = $"Select * from user where userName = '{usernameTextbox.Text}'";
 
 
 
@@ -43,6 +43,7 @@ namespace CalendarTool
                     string password = row1.Field<String>("password");
                     if (password == passwordTextBox.Text)
                     {
+                        GlobalConfig.userName = usernameTextbox.Text;
                         dashboard dashboard = new dashboard();
                         dashboard.Show();
                        
@@ -55,15 +56,7 @@ namespace CalendarTool
                 {
                     errorLabel.Text = GlobalValues.usernameWarningText;
                 }
-                //Figure out the ORM and classes here. 
-
-
-
-                //yes then dashboard action
-
-
-                //no, then pop an error message. 
-                //else... username does not exist
+                
             }
         }
 

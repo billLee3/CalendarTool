@@ -35,7 +35,7 @@ namespace CalendarTool
                 }
                 else
                 { 
-                    string createdBy = "test";
+                    string createdBy = GlobalConfig.userName;
                     string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
                     string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
                     //Need to make sure the date times are in the right format. 
@@ -97,10 +97,10 @@ namespace CalendarTool
         {
             int country = countryId;
             string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            string createdBy = "test";
+            
             string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            string lastUpdateBy = "test";
-            string createCity = $"INSERT INTO city(city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{cityName}', {country}, '{createDate}', '{createdBy}', '{lastUpdate}', '{lastUpdateBy}')";
+            
+            string createCity = $"INSERT INTO city(city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{cityName}', {country}, '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createCity, Database.dbConnection.conn);
             cmd.ExecuteScalar();
         }
@@ -132,11 +132,11 @@ namespace CalendarTool
             string postalCode = zipTextBox.Text;
             string phoneNum = phoneNumTextBox.Text;
             string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            string createdBy = "test";
+            
             string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            string lastUpdateBy = "test";
+            
             //LEFT OFF HERE
-            string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {cityId}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{createdBy}', '{lastUpdate}', '{lastUpdateBy}')";
+            string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {cityId}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createAddressQuery, Database.dbConnection.conn);
             cmd.ExecuteScalar();
         }
@@ -161,7 +161,6 @@ namespace CalendarTool
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
                 return -1;
             }
             
@@ -170,10 +169,10 @@ namespace CalendarTool
         public void createCustomer(string customerName, int addressId)
         {
             string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            string createdBy = "test";
+            
             string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            string lastUpdateBy = "test";
-            string createCustomer = $"INSERT INTO customer(customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{customerName}', {addressId}, 1, '{createDate}', '{createdBy}', '{lastUpdate}', '{lastUpdateBy}')";
+            
+            string createCustomer = $"INSERT INTO customer(customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{customerName}', {addressId}, 1, '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createCustomer, Database.dbConnection.conn);
             cmd.ExecuteScalar();
         }
@@ -213,11 +212,6 @@ namespace CalendarTool
                 createCustomer(customerNameTextBox.Text, addressId);
                 MessageBox.Show("Created new customer!");
             }
-            
-
-           
-            
-
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
