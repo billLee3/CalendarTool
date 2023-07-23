@@ -143,7 +143,7 @@ namespace CalendarTool
 
         public int isCustomer(string customerName)
         {
-            string customerQuery = $"SELECT customerId FROM customer WHERE customerName = {customerName}";
+            string customerQuery = $"SELECT customerId FROM customer WHERE customerName = '{customerName}'";
             MySqlCommand cmd = new MySqlCommand(customerQuery, Database.dbConnection.conn);
             try
             {
@@ -153,22 +153,27 @@ namespace CalendarTool
                     int id = Convert.ToInt32(result);
                     return id;
                 }
+                else
+                {
+                    return -1;
+                }
 
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 return -1;
             }
-            return -1;
+            
         }
 
-        public void createCustomer(int addressId)
+        public void createCustomer(string customerName, int addressId)
         {
             string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
             string createdBy = "test";
             string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
             string lastUpdateBy = "test";
-            string createCustomer = $"INSERT INTO customer(customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{customerNameTextBox.Text}', {addressId}, 1, '{createDate}', '{createdBy}', '{lastUpdate}', '{lastUpdateBy}')";
+            string createCustomer = $"INSERT INTO customer(customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{customerName}', {addressId}, 1, '{createDate}', '{createdBy}', '{lastUpdate}', '{lastUpdateBy}')";
             MySqlCommand cmd = new MySqlCommand(createCustomer, Database.dbConnection.conn);
             cmd.ExecuteScalar();
         }
@@ -183,29 +188,41 @@ namespace CalendarTool
             }
 
             int customerId = isCustomer(customerNameTextBox.Text);
+            MessageBox.Show((customerNameTextBox.Text));
+            MessageBox.Show(customerId.ToString());
             if (customerId != -1)
             {
-                if (isAddress(address1TextBox.Text) != -1)
+                string getAddressId = $"SELECT addressId FROM customer WHERE customerId = {customerId}";
+                MySqlCommand cmd = new MySqlCommand(getAddressId, Database.dbConnection.conn);
+                var result = cmd.ExecuteScalar();
+                if (result != null)
                 {
-                    MessageBox.Show("Customer already exists. ");
+                    int addressId = Convert.ToInt32(result);
+                    if (addressId == isAddress(address1TextBox.Text))
+                    {
+                        MessageBox.Show("This customer already exists.");
+                        return;
+                    }
                 }
+                
             }
-            else
+            else if(customerId == -1)
             {
                 createAddress(address1TextBox.Text, cityId);
                 int addressId = isAddress(address1TextBox.Text);
-                createCustomer(addressId);
+                createCustomer(customerNameTextBox.Text, addressId);
                 MessageBox.Show("Created new customer!");
             }
             
 
-            
-            //Run IsCustomer
-            //If it is run is address
-
-            //If it isn't then create the customer.  
+           
             
 
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

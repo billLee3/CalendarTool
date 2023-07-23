@@ -128,8 +128,22 @@ namespace CalendarTool
 
 		private void deleteCustomerButton_Click(object sender, EventArgs e)
 		{
+            var selectedRowIndex = (int)(customersDGV.CurrentCell.RowIndex);
+            var selectedCustID = customersDGV.Rows[selectedRowIndex].Cells[0].Value;
+
+            if (selectedCustID != null)
+            {
+                string deleteQuery = $"DELETE FROM customer WHERE customerId = {selectedCustID}";
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(deleteQuery, Database.dbConnection.conn))
+                {
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                }
+            }
+
             confirmDeleteForm confirmDelete = new confirmDeleteForm();
             confirmDelete.Show();
+            
         }
 	}
 }
