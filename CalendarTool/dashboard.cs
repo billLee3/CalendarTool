@@ -13,10 +13,7 @@ namespace CalendarTool
 {
     public partial class dashboard : Form
     {
-        //May need to look into this piece. The Binding Source is what keeps the DGVs up to date. 
-        private BindingSource appointments;
-        private BindingSource customers;
-
+        
         public dashboard()
         {
             InitializeComponent();
@@ -111,7 +108,7 @@ namespace CalendarTool
 
             if (selectedCustomerID != null)
             {
-                updateCustomerForm updateForm = new updateCustomerForm((int)selectedCustomerID);
+                addCustomerForm updateForm = new addCustomerForm((int)selectedCustomerID);
                 updateForm.Show();
             }
         }

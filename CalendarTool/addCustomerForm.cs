@@ -13,10 +13,70 @@ namespace CalendarTool
 {
     public partial class addCustomerForm : Form
     {
+        public static int initID = -1;
         public addCustomerForm()
         {
             InitializeComponent();
         }
+
+        public addCustomerForm(int recordID)
+        {
+            InitializeComponent();
+            initID = recordID;
+            customerNumTextBox.Enabled = false;
+            customerNumTextBox.Text = recordID.ToString();
+            int addressId = 0;
+            string customer = $"SELECT * FROM customer WHERE customerId = {recordID}";
+            MySqlCommand cmd = new MySqlCommand(customer, Database.dbConnection.conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                customerNameTextBox.Text = $"{reader.GetString("customerName")}";
+                activeTextbox.Text = $"{reader.GetInt32("active").ToString()}";
+                addressId = reader.GetInt32("addressId");
+            }
+
+            reader.Close();
+            string address = $"SELECT * FROM address WHERE addressId = {addressId}";
+            MySqlCommand addressCmd = new MySqlCommand(address, Database.dbConnection.conn);
+            MySqlDataReader addressReader = addressCmd.ExecuteReader();
+
+            int cityId = 0;
+
+            while (addressReader.Read())
+            {
+                address1TextBox.Text = $"{addressReader.GetString("address")}";
+                address2TextBox.Text = $"{addressReader.GetString("address2")}";
+                zipTextBox.Text = $"{addressReader.GetString("postalCode")}";
+                phoneNumTextBox.Text = $"{addressReader.GetString("phone")}";
+
+                cityId = addressReader.GetInt32("cityId");
+            }
+            addressReader.Close();
+
+            string city = $"SELECT * FROM city WHERE cityId = {cityId}";
+            MySqlCommand cityCmd = new MySqlCommand(city, Database.dbConnection.conn);
+            reader = cityCmd.ExecuteReader();
+
+            int countryId = 0;
+            while (reader.Read())
+            {
+                cityTextBox.Text = $"{reader.GetString("city")}";
+                countryId = reader.GetInt32("countryId");
+            }
+            reader.Close();
+            string country = $"SELECT * FROM country WHERE countryId = {countryId}";
+            MySqlCommand countryCmd = new MySqlCommand(country, Database.dbConnection.conn);
+            reader = countryCmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                countryTextBox.Text = $"{reader.GetString("country")}";
+            }
+            reader.Close();
+        }
+    
 
         public int createCountry()
         {
@@ -178,40 +238,69 @@ namespace CalendarTool
         }
         private void createCustomerButton_Click(object sender, EventArgs e)
         {
-            int countryID = createCountry();
-            int cityId = isCity(cityTextBox.Text);
-            if (cityId == -1)
+            if (initID == -1)
             {
-                createCity(cityTextBox.Text, countryID);
-                cityId = isCity(cityTextBox.Text);
-            }
-
-            int customerId = isCustomer(customerNameTextBox.Text);
-            MessageBox.Show((customerNameTextBox.Text));
-            MessageBox.Show(customerId.ToString());
-            if (customerId != -1)
-            {
-                string getAddressId = $"SELECT addressId FROM customer WHERE customerId = {customerId}";
-                MySqlCommand cmd = new MySqlCommand(getAddressId, Database.dbConnection.conn);
-                var result = cmd.ExecuteScalar();
-                if (result != null)
+                int countryID = createCountry();
+                int cityId = isCity(cityTextBox.Text);
+                if (cityId == -1)
                 {
-                    int addressId = Convert.ToInt32(result);
-                    if (addressId == isAddress(address1TextBox.Text))
-                    {
-                        MessageBox.Show("This customer already exists.");
-                        return;
-                    }
+                    createCity(cityTextBox.Text, countryID);
+                    cityId = isCity(cityTextBox.Text);
                 }
-                
+
+                int customerId = isCustomer(customerNameTextBox.Text);
+                MessageBox.Show((customerNameTextBox.Text));
+                MessageBox.Show(customerId.ToString());
+                if (customerId != -1)
+                {
+                    string getAddressId = $"SELECT addressId FROM customer WHERE customerId = {customerId}";
+                    MySqlCommand cmd = new MySqlCommand(getAddressId, Database.dbConnection.conn);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        int addressId = Convert.ToInt32(result);
+                        if (addressId == isAddress(address1TextBox.Text))
+                        {
+                            MessageBox.Show("This customer already exists.");
+                            return;
+                        }
+                    }
+
+                }
+                else if (customerId == -1)
+                {
+                    createAddress(address1TextBox.Text, cityId);
+                    int addressId = isAddress(address1TextBox.Text);
+                    createCustomer(customerNameTextBox.Text, addressId);
+                    MessageBox.Show("Created new customer!");
+                }
+                Close();
             }
-            else if(customerId == -1)
+            else
             {
-                createAddress(address1TextBox.Text, cityId);
+                initID = isCustomer(customerNameTextBox.Text);
+                int countryId = createCountry();
+                int cityId = isCity(cityTextBox.Text);
+                if (cityId == -1)
+                {
+                    createCity(cityTextBox.Text, countryId);
+                    cityId = isCity(cityTextBox.Text);
+                }
                 int addressId = isAddress(address1TextBox.Text);
-                createCustomer(customerNameTextBox.Text, addressId);
-                MessageBox.Show("Created new customer!");
+                if (addressId == -1)
+                {
+                    createAddress(address1TextBox.Text, cityId);
+                    addressId = isAddress(address1TextBox.Text);
+                }
+                int activeNum = Convert.ToInt32(activeTextbox.Text);
+                string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+                //THIS UPDATE STATEMENT DOESN'T WORK...FIX IT!!
+                string customerQuery = $"UPDATE customer SET customerName = '{customerNameTextBox.Text}', addressId = {addressId}, active = {activeNum}, lastUpdate = '{lastUpdate}', lastUpdateBy = '{GlobalConfig.userName}' WHERE customerId = {initID}";
+
+                MySqlCommand cmd = new MySqlCommand(customerQuery, Database.dbConnection.conn);
+                cmd.ExecuteScalar();
             }
+            
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
