@@ -98,6 +98,12 @@
     <Compile Include="addCustomerForm.Designer.cs">
       <DependentUpon>addCustomerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalendarView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalendarView.Designer.cs">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </Compile>
     <Compile Include="confirmDeleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +152,9 @@
     </Compile>
     <EmbeddedResource Include="addAppointmentForm.resx" />
     <EmbeddedResource Include="addCustomerForm.resx" />
+    <EmbeddedResource Include="CalendarView.resx">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="confirmDeleteForm.resx" />
     <EmbeddedResource Include="dashboard.resx" />
     <EmbeddedResource Include="GlobalValues.es-MX.resx">

@@ -127,8 +127,6 @@ namespace CalendarTool
                     MessageBox.Show(ex.ToString());
                     return -1;
                 }
-                //return ID
-            
         }
 
         public int isCity(string cityName)
@@ -198,7 +196,7 @@ namespace CalendarTool
             //LEFT OFF HERE
             string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {cityId}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createAddressQuery, Database.dbConnection.conn);
-            cmd.ExecuteScalar();
+            cmd.ExecuteNonQuery();
         }
 
         public int isCustomer(string customerName)
@@ -238,6 +236,7 @@ namespace CalendarTool
         }
         private void createCustomerButton_Click(object sender, EventArgs e)
         {
+            int addressId = 0;
             if (initID == -1)
             {
                 int countryID = createCountry();
@@ -249,6 +248,7 @@ namespace CalendarTool
                 }
 
                 int customerId = isCustomer(customerNameTextBox.Text);
+               
                 MessageBox.Show((customerNameTextBox.Text));
                 MessageBox.Show(customerId.ToString());
                 if (customerId != -1)
@@ -258,7 +258,7 @@ namespace CalendarTool
                     var result = cmd.ExecuteScalar();
                     if (result != null)
                     {
-                        int addressId = Convert.ToInt32(result);
+                        addressId = Convert.ToInt32(result);
                         if (addressId == isAddress(address1TextBox.Text))
                         {
                             MessageBox.Show("This customer already exists.");
@@ -270,7 +270,7 @@ namespace CalendarTool
                 else if (customerId == -1)
                 {
                     createAddress(address1TextBox.Text, cityId);
-                    int addressId = isAddress(address1TextBox.Text);
+                    addressId = isAddress(address1TextBox.Text);
                     createCustomer(customerNameTextBox.Text, addressId);
                     MessageBox.Show("Created new customer!");
                 }
@@ -278,29 +278,78 @@ namespace CalendarTool
             }
             else
             {
+                //disabling customer name because if the person's name is changing then they should just be listed an inactive. 
+                customerNameTextBox.Enabled = false;
                 initID = isCustomer(customerNameTextBox.Text);
-                int countryId = createCountry();
-                int cityId = isCity(cityTextBox.Text);
-                if (cityId == -1)
+                //MessageBox.Show(initID.ToString());
+
+                int addressID = isAddress(address1TextBox.Text);
+                if (addressID != -1)
                 {
-                    createCity(cityTextBox.Text, countryId);
-                    cityId = isCity(cityTextBox.Text);
+                    int cityID = determineCity(addressID);
+                    string updateAddressQuery = $"UPDATE address SET cityId = {cityID} WHERE addressId = {addressID}";
+                    MySqlCommand updateAddressCMD = new MySqlCommand(updateAddressQuery, Database.dbConnection.conn);
+                    updateAddressCMD.ExecuteNonQuery();
                 }
-                int addressId = isAddress(address1TextBox.Text);
-                if (addressId == -1)
+                else
                 {
-                    createAddress(address1TextBox.Text, cityId);
-                    addressId = isAddress(address1TextBox.Text);
+                    int cityID = determineCity(addressID);
+                    createAddress(address1TextBox.Text, cityID);
+                   
                 }
+
+                
                 int activeNum = Convert.ToInt32(activeTextbox.Text);
                 string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-                //THIS UPDATE STATEMENT DOESN'T WORK...FIX IT!!
-                string customerQuery = $"UPDATE customer SET customerName = '{customerNameTextBox.Text}', addressId = {addressId}, active = {activeNum}, lastUpdate = '{lastUpdate}', lastUpdateBy = '{GlobalConfig.userName}' WHERE customerId = {initID}";
+                
+                //FOR SOME REASON
+                string customerQuery = $"UPDATE customer SET addressId = {isAddress(address1TextBox.Text)}, active = {activeNum}, lastUpdate = '{lastUpdate}', lastUpdateBy = '{GlobalConfig.userName}' WHERE customerId = {initID}";
 
                 MySqlCommand cmd = new MySqlCommand(customerQuery, Database.dbConnection.conn);
-                cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
             
+        }
+
+        public int determineCity(int addressID)
+        {
+            string addressQuery = $"SELECT cityId FROM address WHERE addressId = {addressID}";
+            MessageBox.Show($"Address ID = {addressID}");
+
+            MySqlCommand cityCMD = new MySqlCommand(addressQuery, Database.dbConnection.conn);
+            var result = cityCMD.ExecuteScalar();
+
+            int dbCityId = 0;
+            if (result != null)
+            {
+                int resultID = Convert.ToInt32(result);
+                if (resultID == isCity(cityTextBox.Text))
+                {
+                    dbCityId = resultID;
+                    MessageBox.Show($"ID matches previous. ID is {resultID}");
+                }
+                else if (isCity(cityTextBox.Text) == -1)
+                {
+                    //This may not work but we will test. 
+                    int countryID = createCountry();
+                    MessageBox.Show($"Country ID is {countryID}");
+                    if (countryID == -1)
+                    {
+                        countryID = createCountry();
+                    }
+                    createCity(cityTextBox.Text, countryID);
+                    dbCityId = isCity(cityTextBox.Text);
+                    MessageBox.Show($"New one. ID is {dbCityId}");
+                }
+                else //In this case the address city exists but isn't associated with this customer
+                {
+                    dbCityId = isCity(cityTextBox.Text);
+                    MessageBox.Show($"City existed but somewhere else. ");
+                }
+                
+            }
+            return dbCityId;
+
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

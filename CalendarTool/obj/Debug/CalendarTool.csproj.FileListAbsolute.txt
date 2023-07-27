@@ -45,3 +45,4 @@ C:\Users\LabUser\Source\Repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.a
 C:\Users\LabUser\Source\Repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.confirmDeleteForm.resources
 C:\Users\LabUser\Source\Repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.updateAppointmentForm.resources
 C:\Users\LabUser\Source\Repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.updateCustomerForm.resources
+C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.CalendarView.resources

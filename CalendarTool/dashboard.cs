@@ -122,5 +122,16 @@ namespace CalendarTool
             confirmDelete.Show();
             Close();
         }
-	}
+
+        private void monthlyRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void calendarView_Click(object sender, EventArgs e)
+        {
+            CalendarView calendarView = new CalendarView();
+            calendarView.Show();
+        }
+    }
 }
