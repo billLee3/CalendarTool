@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,6 +46,8 @@ namespace CalendarTool
                     if (password == passwordTextBox.Text)
                     {
                         GlobalConfig.userName = usernameTextbox.Text;
+
+                        writeLog(GlobalConfig.userName);
                         dashboard dashboard = new dashboard();
                         dashboard.Show();
                        
@@ -63,6 +67,28 @@ namespace CalendarTool
         private void loginExitButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void writeLog(string userName)
+        {
+            //Saves to debug folder within bin folder. 
+            //REFERENCE: string exe_path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            
+            string exe_path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            try
+            {
+                using(StreamWriter w = File.AppendText(exe_path + "\\" + "log.txt"))
+                {
+                    w.WriteLine("Log Entry: ");
+                    w.WriteLine($"User: {userName}");
+                    w.WriteLine($"TimeStamp: {DateTime.UtcNow.ToString()}");
+                    w.WriteLine("---------------------");
+                }
+                
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Writer failed");
+            }
         }
     }
 }
