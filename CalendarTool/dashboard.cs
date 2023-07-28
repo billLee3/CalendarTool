@@ -24,9 +24,20 @@ namespace CalendarTool
             //SQL Adapter code found at the following https://stackoverflow.com/questions/21132596/how-to-import-data-from-mysql-database-to-datagridview
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(apptQuery, Database.dbConnection.conn))
             {
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-                appointmentsDGV.DataSource = ds.Tables[0];
+                
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                appointmentsDGV.DataSource = dt;
+
+                for (int idx = 0; idx < dt.Rows.Count; idx++)
+                {
+                    dt.Rows[idx]["start"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["start"], TimeZoneInfo.Local).ToString();
+                    dt.Rows[idx]["end"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["end"], TimeZoneInfo.Local).ToString();
+                    dt.Rows[idx]["createDate"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["createDate"], TimeZoneInfo.Local).ToString();
+                    dt.Rows[idx]["lastUpdate"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["lastUpdate"], TimeZoneInfo.Local).ToString();
+                }
+                
+                //appointmentsDGV.DataSource = ds.Tables[0];
             }
             appointmentsDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             appointmentsDGV.ReadOnly = true;
@@ -35,9 +46,16 @@ namespace CalendarTool
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(custQuery, Database.dbConnection.conn))
             {
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-                customersDGV.DataSource = ds.Tables[0];
+                DataTable dt2 = new DataTable();
+                adapter.Fill(dt2);
+
+                customersDGV.DataSource = dt2;
+
+                for (int idx = 0; idx < dt2.Rows.Count; idx++)
+                { 
+                    dt2.Rows[idx]["createDate"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt2.Rows[idx]["createDate"], TimeZoneInfo.Local).ToString();
+                    dt2.Rows[idx]["lastUpdate"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt2.Rows[idx]["lastUpdate"], TimeZoneInfo.Local).ToString();
+                }
             }
             customersDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             customersDGV.ReadOnly = true;

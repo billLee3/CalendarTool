@@ -208,6 +208,7 @@ namespace CalendarTool
             this.cancelNewApptButton.TabIndex = 16;
             this.cancelNewApptButton.Text = "Cancel";
             this.cancelNewApptButton.UseVisualStyleBackColor = true;
+            this.cancelNewApptButton.Click += new System.EventHandler(this.cancelNewApptButton_Click);
             // 
             // newApptErrorLabel
             // 
@@ -306,17 +307,12 @@ namespace CalendarTool
             // 
             // startDateTimePicker
             // 
-            this.startDateTimePicker.Checked = false;
             this.startDateTimePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
             this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDateTimePicker.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.startDateTimePicker.Location = new System.Drawing.Point(137, 389);
+            this.startDateTimePicker.Location = new System.Drawing.Point(137, 393);
             this.startDateTimePicker.Name = "startDateTimePicker";
-            this.startDateTimePicker.Size = new System.Drawing.Size(210, 20);
-            this.startDateTimePicker.TabIndex = 10;
-            this.startDateTimePicker.TabStop = false;
-            this.startDateTimePicker.Value = new System.DateTime(2023, 7, 16, 22, 33, 9, 0);
-            this.startDateTimePicker.ValueChanged += new System.EventHandler(this.startDateTimePicker_ValueChanged);
+            this.startDateTimePicker.Size = new System.Drawing.Size(213, 20);
+            this.startDateTimePicker.TabIndex = 28;
             // 
             // updateAppointmentForm
             // 
@@ -386,5 +382,5 @@ namespace CalendarTool
         private TextBox urlTextBox;
         private DateTimePicker endDateTimePicker;
         private DateTimePicker startDateTimePicker;
-	}
+    }
 }

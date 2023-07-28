@@ -60,15 +60,18 @@ namespace CalendarTool
                     string url = row1.Field<string>("url");
                     urlTextBox.Text = url;
 
-                    DateTime startDateTime = row1.Field<DateTime>("start");
-                    startDateTimePicker.Value = startDateTime.ToLocalTime();
+                    //FOR SOME REASON THE START DATE PICKER IS ONLY TODAY
+                    DateTime startDateTime = row1.Field<DateTime>("start").ToLocalTime();
+                    MessageBox.Show(startDateTime.ToString());
+                    startDateTimePicker.Value = startDateTime;
 
-                    DateTime endDateTime = row1.Field<DateTime>("end");
+                    DateTime endDateTime = row1.Field<DateTime>("end").ToLocalTime();
                     endDateTimePicker.Value = endDateTime.ToLocalTime();
+                    MessageBox.Show(endDateTime.ToString());
                 }
             }
                 //Fill in the data from the database to the entries. 
-            }
+        }
 
 		private void endDateTimePicker_ValueChanged(object sender, EventArgs e)
 		{
@@ -112,5 +115,12 @@ namespace CalendarTool
 		{
 
 		}
-	}
+
+        private void cancelNewApptButton_Click(object sender, EventArgs e)
+        {
+            dashboard dashboard = new dashboard();
+            dashboard.Show();
+            Close();
+        }
+    }
 }

@@ -33,11 +33,15 @@ namespace CalendarTool
             int customerId = int.Parse(customerIDTextBox.Text);
 
             string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            MessageBox.Show(start);
             DateTime startDt = DateTime.Parse(start);
-            string startUTC = startDt.ToUniversalTime().ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
+            string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+            
             string end = endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
             DateTime endDt = DateTime.Parse(end);
-            string endUTC = endDt.ToUniversalTime().ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
+            string endUTC = endDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
 
             string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
             

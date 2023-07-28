@@ -75,6 +75,8 @@ namespace CalendarTool
                 countryTextBox.Text = $"{reader.GetString("country")}";
             }
             reader.Close();
+
+
         }
     
 
