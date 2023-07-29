@@ -195,7 +195,7 @@ namespace CalendarTool
             
             string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
             
-            //LEFT OFF HERE
+            //Error came up here...test with address2 filled in. 
             string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {cityId}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createAddressQuery, Database.dbConnection.conn);
             cmd.ExecuteNonQuery();
