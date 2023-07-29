@@ -33,7 +33,7 @@ namespace CalendarTool
             int customerId = int.Parse(customerIDTextBox.Text);
 
             string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
-            MessageBox.Show(start);
+            
             DateTime startDt = DateTime.Parse(start);
             DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
             string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");

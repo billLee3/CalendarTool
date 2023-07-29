@@ -90,10 +90,25 @@ namespace CalendarTool
             startDateTimePicker.Value.ToUniversalTime();
             
             string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+
+            //string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+
+            DateTime startDt = DateTime.Parse(startDate);
+            DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
+            string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+
             endDateTimePicker.Value.ToUniversalTime();
-            string endDate = endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime endDt = DateTime.Parse(endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
+            string endUTC = endDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+            
             string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{apptTypeTextBox.Text}', url = '{urlTextBox.Text}', start = '{startDate}', end = '{endDate}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
+
+            Validator validator = new Validator();
+            //NEED TO MIRROR SET UP TO THE ADD APPOINTMENT FORM
+            //bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
+
+            string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{apptTypeTextBox.Text}', url = '{urlTextBox.Text}', start = '{startUTC}', end = '{endDate}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
             
             
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(updateApptQuery, Database.dbConnection.conn))
