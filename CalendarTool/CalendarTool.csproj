@@ -150,6 +150,7 @@
     <Compile Include="updateCustomerForm.Designer.cs">
       <DependentUpon>updateCustomerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validator.cs" />
     <EmbeddedResource Include="addAppointmentForm.resx" />
     <EmbeddedResource Include="addCustomerForm.resx" />
     <EmbeddedResource Include="CalendarView.resx">
