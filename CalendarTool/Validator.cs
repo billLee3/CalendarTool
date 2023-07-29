@@ -19,7 +19,7 @@ namespace CalendarTool
             if (start.Hour >= 12 && start.Hour < 20)
             {
                 MessageBox.Show("Start Time is in range.");
-                if(end.Hour < 20 && end.Hour > 12)
+                if(end.Hour < 20 && end.Hour >= 12)
                 {
                     return true;
                 }else if (end.Hour == 20 && end.Minute == 0 && end.Second == 0)

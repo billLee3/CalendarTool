@@ -98,7 +98,7 @@ namespace CalendarTool
             string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
 
             endDateTimePicker.Value.ToUniversalTime();
-            DateTime endDt = DateTime.Parse(endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime endDt = DateTime.Parse(endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss"));
             DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
             string endUTC = endDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
             
@@ -106,20 +106,27 @@ namespace CalendarTool
 
             Validator validator = new Validator();
             //NEED TO MIRROR SET UP TO THE ADD APPOINTMENT FORM
-            //bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
-
-            string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{apptTypeTextBox.Text}', url = '{urlTextBox.Text}', start = '{startUTC}', end = '{endDate}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
-            
-            
-            using (MySqlDataAdapter adapter = new MySqlDataAdapter(updateApptQuery, Database.dbConnection.conn))
+            bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
+            if (withinBusinessHours == true)
             {
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-            }
+                string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{apptTypeTextBox.Text}', url = '{urlTextBox.Text}', start = '{startUTC}', end = '{endUTC}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
 
-            dashboard dashboard = new dashboard();
-            dashboard.Show();
-            Close();
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(updateApptQuery, Database.dbConnection.conn))
+                {
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                }
+
+                dashboard dashboard = new dashboard();
+                dashboard.Show();
+                Close();
+            }
+            else
+            {
+                errorLabel.Text = "Appointment isn't within business hours. ";
+            }
+            
         }
 
 		private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
