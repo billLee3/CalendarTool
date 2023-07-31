@@ -48,6 +48,7 @@ namespace CalendarTool
                         GlobalConfig.userName = usernameTextbox.Text;
 
                         writeLog(GlobalConfig.userName);
+                        
                         dashboard dashboard = new dashboard();
                         dashboard.Show();
                        

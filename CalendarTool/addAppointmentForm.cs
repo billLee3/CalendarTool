@@ -30,47 +30,55 @@ namespace CalendarTool
                 MessageBox.Show("You got problems buddy.");
                 return;
             }
-            int customerId = int.Parse(customerIDTextBox.Text);
-
-            string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
-            
-            DateTime startDt = DateTime.Parse(start);
-            DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
-            string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
-            
-            string end = endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
-            DateTime endDt = DateTime.Parse(end);
-            DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
-            string endUTC = endDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
-
-            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-            
-            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-
             Validator validator = new Validator();
-            bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
-            if (withinBusinessHours == true)
+            bool validCustomer = validator.isCustomer(customerIDTextBox.Text);
+
+            if (validCustomer != true)
             {
-                MessageBox.Show("Within Business Hours!");
-                string createApptQuery = $"INSERT INTO appointment(customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) " +
-                $"VALUES ({customerId}, {userId}, '{apptTitleTextBox.Text}', '{descriptionTextBox.Text}', '{locationTextBox.Text}', '{pocTextBox.Text}', '{apptTypeTextBox.Text}', '{urlTextBox.Text}', '{startUTC}', '{endUTC}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}' )";
-
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(createApptQuery, Database.dbConnection.conn))
-                {
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                }
-
-                dashboard dashboard = new dashboard();
-                dashboard.Show();
-                Close();
+                errorLabel.Text = "Enter a valid customer ID. ";
             }
             else
             {
-                errorLabel.Text = "Appointment isn't within business hours. ";
-            }
+                int customerId = int.Parse(customerIDTextBox.Text);
 
-            
+                string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+
+                DateTime startDt = DateTime.Parse(start);
+                DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
+                string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+
+                string end = endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+                DateTime endDt = DateTime.Parse(end);
+                DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
+                string endUTC = endDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+
+                string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+
+                string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+
+
+                bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
+                if (withinBusinessHours == true)
+                {
+                    MessageBox.Show("Within Business Hours!");
+                    string createApptQuery = $"INSERT INTO appointment(customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) " +
+                    $"VALUES ({customerId}, {userId}, '{apptTitleTextBox.Text}', '{descriptionTextBox.Text}', '{locationTextBox.Text}', '{pocTextBox.Text}', '{apptTypeTextBox.Text}', '{urlTextBox.Text}', '{startUTC}', '{endUTC}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}' )";
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(createApptQuery, Database.dbConnection.conn))
+                    {
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                    }
+
+                    dashboard dashboard = new dashboard();
+                    dashboard.Show();
+                    Close();
+                }
+                else
+                {
+                    errorLabel.Text = "Appointment isn't within business hours. ";
+                }
+            }
         }
 
         public int getUserID(string userName)
