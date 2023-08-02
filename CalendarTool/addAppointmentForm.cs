@@ -13,10 +13,12 @@ namespace CalendarTool
 {
     public partial class addAppointmentForm : Form
     {
+        
         public addAppointmentForm()
         {
             InitializeComponent();
-
+            getTypes();
+            getCustomerIDs();
             startDateTimePicker.Value.ToLocalTime();
             endDateTimePicker.Value.ToLocalTime();
         }
@@ -31,7 +33,7 @@ namespace CalendarTool
                 return;
             }
             Validator validator = new Validator();
-            bool validCustomer = validator.isCustomer(customerIDTextBox.Text);
+            bool validCustomer = validator.isCustomer(custIDcomboBox.SelectedValue.ToString());
 
             if (validCustomer != true)
             {
@@ -39,22 +41,22 @@ namespace CalendarTool
             }
             else
             {
-                int customerId = int.Parse(customerIDTextBox.Text);
+               
 
-                string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+                string start = startDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
                 DateTime startDt = DateTime.Parse(start);
                 DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
-                string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+                string startUTC = startDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string end = endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+                string end = endDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime endDt = DateTime.Parse(end);
                 DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
-                string endUTC = endDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+                string endUTC = endDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+                string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+                string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
 
 
                 bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
@@ -64,7 +66,7 @@ namespace CalendarTool
                     if (overlap == false)
                     {
                         string createApptQuery = $"INSERT INTO appointment(customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) " +
-                    $"VALUES ({customerId}, {userId}, '{apptTitleTextBox.Text}', '{descriptionTextBox.Text}', '{locationTextBox.Text}', '{pocTextBox.Text}', '{apptTypeTextBox.Text}', '{urlTextBox.Text}', '{startUTC}', '{endUTC}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}' )";
+                    $"VALUES ({custIDcomboBox.SelectedValue}, {userId}, '{apptTitleTextBox.Text}', '{descriptionTextBox.Text}', '{locationTextBox.Text}', '{pocTextBox.Text}', '{typeComboBox.SelectedValue}', '{urlTextBox.Text}', '{startUTC}', '{endUTC}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}' )";
 
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(createApptQuery, Database.dbConnection.conn))
                         {
@@ -115,6 +117,45 @@ namespace CalendarTool
                 return -1;
             }
         }
-        
-	}
+
+        private void cancelNewApptButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void getTypes()
+        {
+            //using lamdba expression to efficiently reorder the values alphabetically for easier readability. 
+            List<string> types = GlobalConfig.apptTypes.OrderBy(t => t).ToList();
+            typeComboBox.DataSource = types;
+        }
+
+        private void getCustomerIDs()
+        {
+            string query = "SELECT customerId FROM customer";
+            
+
+            using (MySqlDataAdapter adp = new MySqlDataAdapter(query, Database.dbConnection.conn))
+            {
+                DataSet ds = new DataSet();
+                adp.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                int rows = dt.Rows.Count;
+                List<string> list = new List<String>();
+
+                //Running a for loop via a lambda function. 
+                dt.Rows.Cast<DataRow>().ToList().ForEach(row => list.Add(row[0].ToString()));
+                GlobalConfig.customerIds = list;
+                
+                //using lamdba expression to efficiently reorder the code so the order is sequential. 
+                List<string> ids = GlobalConfig.customerIds.OrderBy(i => i).ToList();
+                custIDcomboBox.DataSource = ids;
+            }
+        }
+    }
 }

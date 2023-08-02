@@ -15,6 +15,7 @@ namespace CalendarTool
     {
         BindingSource appointments;
         DataView dataView;
+        public delegate bool YearPredicate(int year);
         public CalendarView()
         {
             InitializeComponent();
@@ -81,8 +82,8 @@ namespace CalendarTool
 
             DateTime beginningWeek = today.AddDays(subtractToBegin);
             DateTime endWeek = today.AddDays(addToEnd);
-            string begin = beginningWeek.ToString("yyyy-MM-dd hh:mm:ss");
-            string end = endWeek.ToString("yyyy-MM-dd hh:mm:ss");
+            string begin = beginningWeek.ToString("yyyy-MM-dd HH:mm:ss");
+            string end = endWeek.ToString("yyyy-MM-dd HH:mm:ss");
 
             string query = $"SELECT * FROM appointment WHERE (start BETWEEN '{begin}' AND '{end}')";
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, Database.dbConnection.conn))

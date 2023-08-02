@@ -297,7 +297,7 @@ namespace CalendarTool
             // 
             // endDateTimePicker
             // 
-            this.endDateTimePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            this.endDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.endDateTimePicker.Location = new System.Drawing.Point(137, 443);
             this.endDateTimePicker.Name = "endDateTimePicker";
@@ -307,7 +307,7 @@ namespace CalendarTool
             // 
             // startDateTimePicker
             // 
-            this.startDateTimePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            this.startDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.startDateTimePicker.Location = new System.Drawing.Point(137, 393);
             this.startDateTimePicker.Name = "startDateTimePicker";

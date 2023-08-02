@@ -47,10 +47,18 @@ namespace CalendarTool
                 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(deleteQuery, Database.dbConnection.conn))
                 {
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
+                    try
+                    {
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        MessageBox.Show("You've deleted the record.");
+                    }catch (MySql.Data.MySqlClient.MySqlException ex)
+                    {
+                        MessageBox.Show("You cannot delete a customer associated to any appointments. \n Delete all associated appointments first. ");
+                    }
+                    
                 }
-                MessageBox.Show("You deleted the appointment. ");
+                
                 dashboard dashboard = new dashboard();
                 dashboard.Show();
                 Close();

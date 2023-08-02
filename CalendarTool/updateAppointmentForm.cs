@@ -89,20 +89,20 @@ namespace CalendarTool
             int userID = int.Parse(userIDTextBox.Text);
             startDateTimePicker.Value.ToUniversalTime();
             
-            string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
             //string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
 
             DateTime startDt = DateTime.Parse(startDate);
             DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
-            string startUTC = startDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+            string startUTC = startDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
 
             endDateTimePicker.Value.ToUniversalTime();
-            DateTime endDt = DateTime.Parse(endDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss"));
+            DateTime endDt = DateTime.Parse(endDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"));
             DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
-            string endUTC = endDtUTC.ToString("yyyy-MM-dd hh:mm:ss");
+            string endUTC = endDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
             
-            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
 
             Validator validator = new Validator();
             //NEED TO MIRROR SET UP TO THE ADD APPOINTMENT FORM

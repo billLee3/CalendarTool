@@ -16,7 +16,7 @@ namespace CalendarTool
             
             if (start.Hour >= 12 && start.Hour < 20)
             {
-                MessageBox.Show("Start Time is in range.");
+                
                 if(end.Hour < 20 && end.Hour >= 12)
                 {
                     return true;
@@ -57,12 +57,6 @@ namespace CalendarTool
                 return false;
             }
 
-        }
-
-        public bool overlappingEnd(DateTime startDate, DateTime endDate)
-        {
-            string query = $"SELECT * FROM appointment WHERE end BETWEEN {startDate} AND {endDate}";
-            return false;
         }
 
         public bool isCustomer(string customerId)

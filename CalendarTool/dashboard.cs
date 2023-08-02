@@ -19,6 +19,7 @@ namespace CalendarTool
             InitializeComponent();
             string apptQuery = "Select * from appointment";
             string custQuery = "Select * from customer";
+            DateTime now = DateTime.UtcNow;
             
 
             //SQL Adapter code found at the following https://stackoverflow.com/questions/21132596/how-to-import-data-from-mysql-database-to-datagridview
@@ -31,6 +32,16 @@ namespace CalendarTool
 
                 for (int idx = 0; idx < dt.Rows.Count; idx++)
                 {
+                    //15 Minutes
+                    string start = dt.Rows[idx]["start"].ToString();
+                    DateTime startDt = DateTime.Parse(start);
+                    System.TimeSpan diff = now.Subtract(startDt);
+                    double seconds = diff.TotalSeconds;
+                    MessageBox.Show(seconds.ToString());
+                    if (seconds <= 900 && seconds > 0)
+                    {
+                        MessageBox.Show("You have a meeting in within the next 15 minutes. ");
+                    }
                     dt.Rows[idx]["start"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["start"], TimeZoneInfo.Local).ToString();
                     dt.Rows[idx]["end"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["end"], TimeZoneInfo.Local).ToString();
                     dt.Rows[idx]["createDate"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["createDate"], TimeZoneInfo.Local).ToString();

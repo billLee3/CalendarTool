@@ -98,8 +98,8 @@ namespace CalendarTool
                 else
                 { 
                     string createdBy = GlobalConfig.userName;
-                    string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
-                    string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+                    string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                    string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
                     //Need to make sure the date times are in the right format. 
                     string countryAddString = $"INSERT INTO country(country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{countryName}', '{createDate}', '{createdBy}', '{lastUpdate}', '{createdBy}')";
                     try 
@@ -156,9 +156,9 @@ namespace CalendarTool
         public void createCity(string cityName, int countryId)
         {
             int country = countryId;
-            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             
-            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             
             string createCity = $"INSERT INTO city(city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{cityName}', {country}, '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createCity, Database.dbConnection.conn);
@@ -191,9 +191,9 @@ namespace CalendarTool
             int country = cityId;
             string postalCode = zipTextBox.Text;
             string phoneNum = phoneNumTextBox.Text;
-            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             
-            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             
             //Error came up here...test with address2 filled in. 
             string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {cityId}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
@@ -228,9 +228,9 @@ namespace CalendarTool
 
         public void createCustomer(string customerName, int addressId)
         {
-            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             
-            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             
             string createCustomer = $"INSERT INTO customer(customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{customerName}', {addressId}, 1, '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createCustomer, Database.dbConnection.conn);
@@ -302,7 +302,7 @@ namespace CalendarTool
 
                 
                 int activeNum = Convert.ToInt32(activeTextbox.Text);
-                string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss");
+                string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
                 
                 //FOR SOME REASON
                 string customerQuery = $"UPDATE customer SET addressId = {isAddress(address1TextBox.Text)}, active = {activeNum}, lastUpdate = '{lastUpdate}', lastUpdateBy = '{GlobalConfig.userName}' WHERE customerId = {initID}";
