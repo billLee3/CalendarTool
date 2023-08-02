@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,12 +36,19 @@ namespace CalendarTool
             
         }
 
-        public bool overlappingStart(DateTime startDate, DateTime endDate)
+        public bool overlappingAppointment(string startDate, string endDate)
         {
-            string query = $"SELECT appointmentId FROM appointment WHERE start BETWEEN {startDate} AND {endDate}";
-            MySqlCommand cmd = new MySqlCommand(query, Database.dbConnection.conn);
-            var result = cmd.ExecuteScalar();
-            if (result != null)
+            DataTable dataTable = new DataTable();
+            //Checking all three overlap conditions
+            string startOverlapQuery = $"SELECT appointmentId FROM appointment WHERE start >= '{startDate}' AND start < '{endDate}'";
+            string endOverlapQuery = $"SELECT appointmentId FROM appointment WHERE end > '{startDate}' AND end <= '{endDate}'";
+            string bothOverlapQuery = $"SELECT appointmentId FROM appointment WHERE start <= '{startDate}' AND end >= '{endDate}'";
+            //Filling the datatable on these three conditions
+            int startAdp = new MySqlDataAdapter(startOverlapQuery, Database.dbConnection.conn).Fill(dataTable);
+            int endAdp = new MySqlDataAdapter(endOverlapQuery, Database.dbConnection.conn).Fill(dataTable);
+            int bothAdp = new MySqlDataAdapter(bothOverlapQuery, Database.dbConnection.conn).Fill(dataTable);
+
+            if (dataTable.Rows.Count > 0)
             {
                 return true;
             }
@@ -48,7 +56,6 @@ namespace CalendarTool
             {
                 return false;
             }
-            
 
         }
 

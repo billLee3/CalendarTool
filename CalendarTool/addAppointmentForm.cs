@@ -60,19 +60,29 @@ namespace CalendarTool
                 bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
                 if (withinBusinessHours == true)
                 {
-                    MessageBox.Show("Within Business Hours!");
-                    string createApptQuery = $"INSERT INTO appointment(customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) " +
+                    bool overlap = validator.overlappingAppointment(startUTC, endUTC);
+                    if (overlap == false)
+                    {
+                        string createApptQuery = $"INSERT INTO appointment(customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) " +
                     $"VALUES ({customerId}, {userId}, '{apptTitleTextBox.Text}', '{descriptionTextBox.Text}', '{locationTextBox.Text}', '{pocTextBox.Text}', '{apptTypeTextBox.Text}', '{urlTextBox.Text}', '{startUTC}', '{endUTC}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}' )";
 
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(createApptQuery, Database.dbConnection.conn))
-                    {
-                        DataSet ds = new DataSet();
-                        adapter.Fill(ds);
-                    }
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(createApptQuery, Database.dbConnection.conn))
+                        {
+                            DataSet ds = new DataSet();
+                            adapter.Fill(ds);
+                        }
 
-                    dashboard dashboard = new dashboard();
-                    dashboard.Show();
-                    Close();
+                        dashboard dashboard = new dashboard();
+                        dashboard.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("There is an overlapping appointment.");
+                    }
+                        
+                    
+                    
                 }
                 else
                 {
