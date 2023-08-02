@@ -32,9 +32,6 @@ namespace CalendarTool
         private void InitializeComponent()
         {
             this.newApptTitleLabel = new System.Windows.Forms.Label();
-            this.apptIDLabel = new System.Windows.Forms.Label();
-            this.apptIDTextBox = new System.Windows.Forms.TextBox();
-            this.userIDLabel = new System.Windows.Forms.Label();
             this.customerNumLabel = new System.Windows.Forms.Label();
             this.apptTitleLabel = new System.Windows.Forms.Label();
             this.apptDescriptionLabel = new System.Windows.Forms.Label();
@@ -47,19 +44,15 @@ namespace CalendarTool
             this.createApptButton = new System.Windows.Forms.Button();
             this.cancelNewApptButton = new System.Windows.Forms.Button();
             this.newApptErrorLabel = new System.Windows.Forms.Label();
-            this.userIDTextBox = new System.Windows.Forms.TextBox();
-            this.customerIDTextBox = new System.Windows.Forms.TextBox();
             this.apptTitleTextBox = new System.Windows.Forms.TextBox();
             this.pocTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.errorLabel = new System.Windows.Forms.Label();
-            this.apptTypeTextBox = new System.Windows.Forms.TextBox();
             this.locationTextBox = new System.Windows.Forms.TextBox();
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.typeComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.custIDcomboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -73,39 +66,11 @@ namespace CalendarTool
             this.newApptTitleLabel.TabIndex = 0;
             this.newApptTitleLabel.Text = "New Appointment";
             // 
-            // apptIDLabel
-            // 
-            this.apptIDLabel.AutoSize = true;
-            this.apptIDLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.apptIDLabel.Location = new System.Drawing.Point(41, 81);
-            this.apptIDLabel.Name = "apptIDLabel";
-            this.apptIDLabel.Size = new System.Drawing.Size(96, 32);
-            this.apptIDLabel.TabIndex = 1;
-            this.apptIDLabel.Text = "Appt ID";
-            // 
-            // apptIDTextBox
-            // 
-            this.apptIDTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.apptIDTextBox.Location = new System.Drawing.Point(137, 81);
-            this.apptIDTextBox.Name = "apptIDTextBox";
-            this.apptIDTextBox.Size = new System.Drawing.Size(86, 35);
-            this.apptIDTextBox.TabIndex = 2;
-            // 
-            // userIDLabel
-            // 
-            this.userIDLabel.AutoSize = true;
-            this.userIDLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.userIDLabel.Location = new System.Drawing.Point(267, 82);
-            this.userIDLabel.Name = "userIDLabel";
-            this.userIDLabel.Size = new System.Drawing.Size(83, 32);
-            this.userIDLabel.TabIndex = 3;
-            this.userIDLabel.Text = "User #";
-            // 
             // customerNumLabel
             // 
             this.customerNumLabel.AutoSize = true;
             this.customerNumLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.customerNumLabel.Location = new System.Drawing.Point(470, 85);
+            this.customerNumLabel.Location = new System.Drawing.Point(21, 80);
             this.customerNumLabel.Name = "customerNumLabel";
             this.customerNumLabel.Size = new System.Drawing.Size(139, 32);
             this.customerNumLabel.TabIndex = 4;
@@ -223,22 +188,6 @@ namespace CalendarTool
             this.newApptErrorLabel.Size = new System.Drawing.Size(0, 25);
             this.newApptErrorLabel.TabIndex = 17;
             // 
-            // userIDTextBox
-            // 
-            this.userIDTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.userIDTextBox.Location = new System.Drawing.Point(342, 82);
-            this.userIDTextBox.Name = "userIDTextBox";
-            this.userIDTextBox.Size = new System.Drawing.Size(86, 35);
-            this.userIDTextBox.TabIndex = 18;
-            // 
-            // customerIDTextBox
-            // 
-            this.customerIDTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.customerIDTextBox.Location = new System.Drawing.Point(593, 85);
-            this.customerIDTextBox.Name = "customerIDTextBox";
-            this.customerIDTextBox.Size = new System.Drawing.Size(86, 35);
-            this.customerIDTextBox.TabIndex = 19;
-            // 
             // apptTitleTextBox
             // 
             this.apptTitleTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
@@ -273,14 +222,6 @@ namespace CalendarTool
             this.errorLabel.Size = new System.Drawing.Size(65, 32);
             this.errorLabel.TabIndex = 23;
             this.errorLabel.Text = "Error";
-            // 
-            // apptTypeTextBox
-            // 
-            this.apptTypeTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.apptTypeTextBox.Location = new System.Drawing.Point(137, 274);
-            this.apptTypeTextBox.Name = "apptTypeTextBox";
-            this.apptTypeTextBox.Size = new System.Drawing.Size(200, 35);
-            this.apptTypeTextBox.TabIndex = 24;
             // 
             // locationTextBox
             // 
@@ -319,26 +260,15 @@ namespace CalendarTool
             // typeComboBox
             // 
             this.typeComboBox.FormattingEnabled = true;
-            this.typeComboBox.Location = new System.Drawing.Point(436, 436);
+            this.typeComboBox.Location = new System.Drawing.Point(140, 285);
             this.typeComboBox.Name = "typeComboBox";
-            this.typeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.typeComboBox.Size = new System.Drawing.Size(147, 21);
             this.typeComboBox.TabIndex = 29;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.label1.Location = new System.Drawing.Point(397, 389);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 32);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Appt Combo Type";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // custIDcomboBox
             // 
             this.custIDcomboBox.FormattingEnabled = true;
-            this.custIDcomboBox.Location = new System.Drawing.Point(436, 493);
+            this.custIDcomboBox.Location = new System.Drawing.Point(166, 91);
             this.custIDcomboBox.Name = "custIDcomboBox";
             this.custIDcomboBox.Size = new System.Drawing.Size(121, 21);
             this.custIDcomboBox.TabIndex = 31;
@@ -349,19 +279,15 @@ namespace CalendarTool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 584);
             this.Controls.Add(this.custIDcomboBox);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.typeComboBox);
             this.Controls.Add(this.startDateTimePicker);
             this.Controls.Add(this.endDateTimePicker);
             this.Controls.Add(this.urlTextBox);
             this.Controls.Add(this.locationTextBox);
-            this.Controls.Add(this.apptTypeTextBox);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.pocTextBox);
             this.Controls.Add(this.apptTitleTextBox);
-            this.Controls.Add(this.customerIDTextBox);
-            this.Controls.Add(this.userIDTextBox);
             this.Controls.Add(this.newApptErrorLabel);
             this.Controls.Add(this.cancelNewApptButton);
             this.Controls.Add(this.createApptButton);
@@ -374,9 +300,6 @@ namespace CalendarTool
             this.Controls.Add(this.apptDescriptionLabel);
             this.Controls.Add(this.apptTitleLabel);
             this.Controls.Add(this.customerNumLabel);
-            this.Controls.Add(this.userIDLabel);
-            this.Controls.Add(this.apptIDTextBox);
-            this.Controls.Add(this.apptIDLabel);
             this.Controls.Add(this.newApptTitleLabel);
             this.Name = "addAppointmentForm";
             this.Text = "addAppointmentForm";
@@ -388,9 +311,6 @@ namespace CalendarTool
         #endregion
 
         private Label newApptTitleLabel;
-        private Label apptIDLabel;
-        private TextBox apptIDTextBox;
-        private Label userIDLabel;
         private Label customerNumLabel;
         private Label apptTitleLabel;
         private Label apptDescriptionLabel;
@@ -403,19 +323,15 @@ namespace CalendarTool
         private Button createApptButton;
         private Button cancelNewApptButton;
         private Label newApptErrorLabel;
-        private TextBox userIDTextBox;
-        private TextBox customerIDTextBox;
         private TextBox apptTitleTextBox;
         private TextBox pocTextBox;
         private TextBox descriptionTextBox;
         private Label errorLabel;
-        private TextBox apptTypeTextBox;
         private TextBox locationTextBox;
         private TextBox urlTextBox;
         private DateTimePicker endDateTimePicker;
         private DateTimePicker startDateTimePicker;
         private ComboBox typeComboBox;
-        private Label label1;
         private ComboBox custIDcomboBox;
     }
 }

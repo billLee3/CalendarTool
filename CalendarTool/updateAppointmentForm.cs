@@ -21,7 +21,10 @@ namespace CalendarTool
         public updateAppointmentForm(int recordID) 
         {
             InitializeComponent();
+            getCustomerIDs();
+            getTypes();
             apptIDTextBox.Enabled = false;
+            userIDTextBox.Enabled = false;
             apptIDTextBox.Text = recordID.ToString();
 
             string apptQuery = $"Select * from appointment where appointmentID = {recordID}";
@@ -36,7 +39,7 @@ namespace CalendarTool
                 if (row1 != null) 
                 {
                     string customerID = row1.Field<int>("customerId").ToString();
-                    customerIDTextBox.Text = customerID;
+                    custIDcomboBox.SelectedItem = customerID;
 
                     string userID = row1.Field<int>("userId").ToString();
                     userIDTextBox.Text = userID;
@@ -54,16 +57,17 @@ namespace CalendarTool
                     pocTextBox.Text = contact;
 
                     string type = row1.Field<string>("type");
-                    apptTypeTextBox.Text = type;
+                    typeComboBox.SelectedItem = type;
 
                     string url = row1.Field<string>("url");
                     urlTextBox.Text = url;
                     
                     DateTime startDateTime = row1.Field<DateTime>("start").ToLocalTime();
-                    startDateTimePicker.Value = startDateTime.ToLocalTime();
-
+                    startDateTimePicker.Value = startDateTime;
+                   
                     DateTime endDateTime = row1.Field<DateTime>("end").ToLocalTime();
-                    endDateTimePicker.Value = endDateTime.ToLocalTime();
+                    endDateTimePicker.Value = endDateTime;
+                    
                     
                 }
             }
@@ -85,7 +89,7 @@ namespace CalendarTool
 		{
             
             int apptID = int.Parse(apptIDTextBox.Text);
-            int customerID = int.Parse(customerIDTextBox.Text);
+            int customerID = int.Parse(custIDcomboBox.SelectedValue.ToString());
             int userID = int.Parse(userIDTextBox.Text);
             startDateTimePicker.Value.ToUniversalTime();
             
@@ -109,7 +113,7 @@ namespace CalendarTool
             bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
             if (withinBusinessHours == true)
             {
-                string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{apptTypeTextBox.Text}', url = '{urlTextBox.Text}', start = '{startUTC}', end = '{endUTC}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
+                string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{typeComboBox.SelectedValue}', url = '{urlTextBox.Text}', start = '{startUTC}', end = '{endUTC}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
 
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(updateApptQuery, Database.dbConnection.conn))
@@ -139,6 +143,36 @@ namespace CalendarTool
             dashboard dashboard = new dashboard();
             dashboard.Show();
             Close();
+        }
+
+        private void getTypes()
+        {
+            //using lamdba expression to efficiently reorder the values alphabetically for easier readability. 
+            List<string> types = GlobalConfig.apptTypes.OrderBy(t => t).ToList();
+            typeComboBox.DataSource = types;
+        }
+
+        private void getCustomerIDs()
+        {
+            string query = "SELECT customerId FROM customer";
+
+
+            using (MySqlDataAdapter adp = new MySqlDataAdapter(query, Database.dbConnection.conn))
+            {
+                DataSet ds = new DataSet();
+                adp.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                int rows = dt.Rows.Count;
+                List<string> list = new List<String>();
+
+                //Running a for loop via a lambda function. 
+                dt.Rows.Cast<DataRow>().ToList().ForEach(row => list.Add(row[0].ToString()));
+                GlobalConfig.customerIds = list;
+
+                //using lamdba expression to efficiently reorder the code so the order is sequential. 
+                List<string> ids = GlobalConfig.customerIds.OrderBy(i => i).ToList();
+                custIDcomboBox.DataSource = ids;
+            }
         }
     }
 }

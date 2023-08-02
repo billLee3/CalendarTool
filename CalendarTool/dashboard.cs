@@ -37,7 +37,7 @@ namespace CalendarTool
                     DateTime startDt = DateTime.Parse(start);
                     System.TimeSpan diff = now.Subtract(startDt);
                     double seconds = diff.TotalSeconds;
-                    MessageBox.Show(seconds.ToString());
+                    
                     if (seconds <= 900 && seconds > 0)
                     {
                         MessageBox.Show("You have a meeting in within the next 15 minutes. ");
