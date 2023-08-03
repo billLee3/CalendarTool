@@ -110,6 +110,18 @@
     <Compile Include="confirmDeleteForm.Designer.cs">
       <DependentUpon>confirmDeleteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="userCreations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="userCreations.Designer.cs">
+      <DependentUpon>userCreations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="customerSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="customerSchedule.Designer.cs">
+      <DependentUpon>customerSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +148,12 @@
     </Compile>
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="MonthlyTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonthlyTypes.Designer.cs">
+      <DependentUpon>MonthlyTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="updateAppointmentForm.cs">
@@ -157,6 +175,12 @@
       <DependentUpon>CalendarView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="confirmDeleteForm.resx" />
+    <EmbeddedResource Include="userCreations.resx">
+      <DependentUpon>userCreations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="customerSchedule.resx">
+      <DependentUpon>customerSchedule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dashboard.resx" />
     <EmbeddedResource Include="GlobalValues.es-MX.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -171,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthlyTypes.resx">
+      <DependentUpon>MonthlyTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

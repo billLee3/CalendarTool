@@ -46,8 +46,9 @@ namespace CalendarTool
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.calendarView = new System.Windows.Forms.Button();
-            this.report2 = new System.Windows.Forms.Button();
-            this.report3 = new System.Windows.Forms.Button();
+            this.typebyMonthButton = new System.Windows.Forms.Button();
+            this.customerScheduleButton = new System.Windows.Forms.Button();
+            this.userCreationsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
             this.panel1.SuspendLayout();
@@ -210,7 +211,7 @@ namespace CalendarTool
             // calendarView
             // 
             this.calendarView.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.calendarView.Location = new System.Drawing.Point(47, 603);
+            this.calendarView.Location = new System.Drawing.Point(27, 604);
             this.calendarView.Name = "calendarView";
             this.calendarView.Size = new System.Drawing.Size(169, 38);
             this.calendarView.TabIndex = 13;
@@ -218,33 +219,47 @@ namespace CalendarTool
             this.calendarView.UseVisualStyleBackColor = true;
             this.calendarView.Click += new System.EventHandler(this.calendarView_Click);
             // 
-            // report2
+            // typebyMonthButton
             // 
-            this.report2.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.report2.Location = new System.Drawing.Point(251, 603);
-            this.report2.Name = "report2";
-            this.report2.Size = new System.Drawing.Size(88, 38);
-            this.report2.TabIndex = 15;
-            this.report2.Text = "Report";
-            this.report2.UseVisualStyleBackColor = true;
+            this.typebyMonthButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.typebyMonthButton.Location = new System.Drawing.Point(202, 604);
+            this.typebyMonthButton.Name = "typebyMonthButton";
+            this.typebyMonthButton.Size = new System.Drawing.Size(217, 38);
+            this.typebyMonthButton.TabIndex = 15;
+            this.typebyMonthButton.Text = "Types by Month";
+            this.typebyMonthButton.UseVisualStyleBackColor = true;
+            this.typebyMonthButton.Click += new System.EventHandler(this.typebyMonthButton_Click);
             // 
-            // report3
+            // customerScheduleButton
             // 
-            this.report3.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.report3.Location = new System.Drawing.Point(381, 603);
-            this.report3.Name = "report3";
-            this.report3.Size = new System.Drawing.Size(88, 38);
-            this.report3.TabIndex = 16;
-            this.report3.Text = "Report";
-            this.report3.UseVisualStyleBackColor = true;
+            this.customerScheduleButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.customerScheduleButton.Location = new System.Drawing.Point(425, 604);
+            this.customerScheduleButton.Name = "customerScheduleButton";
+            this.customerScheduleButton.Size = new System.Drawing.Size(215, 38);
+            this.customerScheduleButton.TabIndex = 16;
+            this.customerScheduleButton.Text = "Customer Schedule";
+            this.customerScheduleButton.UseVisualStyleBackColor = true;
+            this.customerScheduleButton.Click += new System.EventHandler(this.customerScheduleButton_Click);
+            // 
+            // userCreationsButton
+            // 
+            this.userCreationsButton.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.userCreationsButton.Location = new System.Drawing.Point(646, 604);
+            this.userCreationsButton.Name = "userCreationsButton";
+            this.userCreationsButton.Size = new System.Drawing.Size(161, 38);
+            this.userCreationsButton.TabIndex = 17;
+            this.userCreationsButton.Text = "User Creations";
+            this.userCreationsButton.UseVisualStyleBackColor = true;
+            this.userCreationsButton.Click += new System.EventHandler(this.userCreationsButton_Click);
             // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(830, 648);
-            this.Controls.Add(this.report3);
-            this.Controls.Add(this.report2);
+            this.Controls.Add(this.userCreationsButton);
+            this.Controls.Add(this.customerScheduleButton);
+            this.Controls.Add(this.typebyMonthButton);
             this.Controls.Add(this.calendarView);
             this.Controls.Add(this.appointmentsDGV);
             this.Controls.Add(this.dashboardTitleLabel);
@@ -279,8 +294,9 @@ namespace CalendarTool
         private Panel panel1;
         private Panel panel2;
         private Button calendarView;
-        private Button report2;
-        private Button report3;
+        private Button typebyMonthButton;
+        private Button customerScheduleButton;
         private RadioButton radioButton1;
+        private Button userCreationsButton;
     }
 }

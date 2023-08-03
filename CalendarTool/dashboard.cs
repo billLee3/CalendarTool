@@ -162,5 +162,29 @@ namespace CalendarTool
             CalendarView calendarView = new CalendarView();
             calendarView.Show();
         }
+
+        private void typebyMonthButton_Click(object sender, EventArgs e)
+        {
+            MonthlyTypes monthlyTypes = new MonthlyTypes();
+            monthlyTypes.Show();
+
+            this.Close();
+        }
+
+        private void customerScheduleButton_Click(object sender, EventArgs e)
+        {
+            customerSchedule customerSchedule = new customerSchedule();
+            customerSchedule.Show();
+
+            this.Close();
+        }
+
+        private void userCreationsButton_Click(object sender, EventArgs e)
+        {
+            userCreation userCreation = new userCreation();
+            userCreation.Show();
+
+            this.Close();
+        }
     }
 }

@@ -41,13 +41,13 @@ namespace CalendarTool
             this.appointmentCalendarDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.appointmentCalendarDGV.Location = new System.Drawing.Point(32, 23);
             this.appointmentCalendarDGV.Name = "appointmentCalendarDGV";
-            this.appointmentCalendarDGV.Size = new System.Drawing.Size(725, 336);
+            this.appointmentCalendarDGV.Size = new System.Drawing.Size(725, 276);
             this.appointmentCalendarDGV.TabIndex = 0;
             // 
             // allRadioButton
             // 
             this.allRadioButton.AutoSize = true;
-            this.allRadioButton.Location = new System.Drawing.Point(52, 403);
+            this.allRadioButton.Location = new System.Drawing.Point(56, 317);
             this.allRadioButton.Name = "allRadioButton";
             this.allRadioButton.Size = new System.Drawing.Size(36, 17);
             this.allRadioButton.TabIndex = 1;
@@ -59,7 +59,7 @@ namespace CalendarTool
             // weeklyRadioButton
             // 
             this.weeklyRadioButton.AutoSize = true;
-            this.weeklyRadioButton.Location = new System.Drawing.Point(183, 403);
+            this.weeklyRadioButton.Location = new System.Drawing.Point(140, 317);
             this.weeklyRadioButton.Name = "weeklyRadioButton";
             this.weeklyRadioButton.Size = new System.Drawing.Size(61, 17);
             this.weeklyRadioButton.TabIndex = 2;
@@ -71,7 +71,7 @@ namespace CalendarTool
             // monthlyRadioButton
             // 
             this.monthlyRadioButton.AutoSize = true;
-            this.monthlyRadioButton.Location = new System.Drawing.Point(303, 403);
+            this.monthlyRadioButton.Location = new System.Drawing.Point(241, 317);
             this.monthlyRadioButton.Name = "monthlyRadioButton";
             this.monthlyRadioButton.Size = new System.Drawing.Size(62, 17);
             this.monthlyRadioButton.TabIndex = 3;

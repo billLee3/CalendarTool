@@ -46,3 +46,6 @@ C:\Users\LabUser\Source\Repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.c
 C:\Users\LabUser\Source\Repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.updateAppointmentForm.resources
 C:\Users\LabUser\Source\Repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.updateCustomerForm.resources
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.CalendarView.resources
+C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.MonthlyTypes.resources
+C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.customerSchedule.resources
+C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.userCreation.resources
