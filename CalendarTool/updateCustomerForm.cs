@@ -24,6 +24,7 @@ namespace CalendarTool
         {
             InitializeComponent();
             customerNumTextBox.Enabled = false;
+            customerNameTextBox.Enabled = false;
             customerNumTextBox.Text = recordID.ToString();
             int addressId = 0;
             string customer = $"SELECT * FROM customer WHERE customerId = {recordID}";
@@ -84,7 +85,228 @@ namespace CalendarTool
 
         private void createCustomerButton_Click(object sender, EventArgs e)
         {
+            if (isValid() == true)
+            {
+                int entryCountryID = updateCountry();
+                int entryCityID = updateCity(entryCountryID);
+                int entryAddressID = updateAddress(entryCityID);
+                updateCustomer(entryAddressID);
+            }
+            
+        }
+
+        private int updateCountry()
+        {
+            int countryID = 0;
+            string query = $"SELECT countryId FROM country where country = '{countryTextBox.Text}'";
+            MySqlCommand cmd = new MySqlCommand(query, Database.dbConnection.conn);
+            var result = cmd.ExecuteScalar();
+            if (result != null)
+            {
+                countryID = int.Parse(result.ToString());
+                return countryID;
+            }
+            else
+            {
+                //Country doesn't exist. Create new country.
+                string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                string insertQuery = $"INSERT INTO country(country, createDate, createdBy, lastUpdate, lastUpdateBy ) VALUES('{countryTextBox.Text}', '{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                MySqlCommand insertCMD = new MySqlCommand(insertQuery, Database.dbConnection.conn);
+                insertCMD.ExecuteNonQuery();
+                var result2 = cmd.ExecuteScalar();
+                countryID = int.Parse(result2.ToString());
+                return countryID;
+                
+            }
 
         }
+
+         
+        private int updateCity(int entryCountryID)
+        {
+             
+            int cityID = 0;
+            string query = $"SELECT cityId FROM city WHERE city = '{cityTextBox.Text}'";
+            string countryQuery = $"SELECT countryId FROM city WHERE city = '{cityTextBox.Text}'";
+            MySqlCommand cmd = new MySqlCommand(query, Database.dbConnection.conn);
+            var result = cmd.ExecuteScalar();
+            if (result != null)
+            {
+                cityID = int.Parse(result.ToString());
+
+                MySqlCommand countryCMD = new MySqlCommand(countryQuery, Database.dbConnection.conn);
+                var countryResult = countryCMD.ExecuteScalar();
+                if (countryResult != null)
+                {
+                    int countryID = int.Parse(countryResult.ToString());
+                    if (countryID != entryCountryID)
+                    {
+                        //May need to be an INSERT statement and not an UPDATE. 
+                        string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                        string insertCityQuery = $"INSERT INTO city(city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{cityTextBox.Text}', {entryCountryID}, '{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                        //string updateCityQuery = $"UPDATE city SET countryId = {updateCountry()} WHERE cityId = {cityID}";
+                        MySqlCommand updateCity = new MySqlCommand(insertCityQuery, Database.dbConnection.conn);
+                        updateCity.ExecuteNonQuery();
+                        var newID = cmd.ExecuteScalar();
+                        cityID = int.Parse(newID.ToString());
+                        return cityID;
+                    }
+                    else
+                    {
+                        return cityID;
+                    }
+                }
+                else
+                {
+                    return cityID;
+                }
+
+            }
+            else
+            {
+                //City Name is different so we are inserting and not updating
+                
+                string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                string insertCityQuery = $"INSERT INTO city(city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{cityTextBox.Text}', {entryCountryID}, '{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                MySqlCommand insertCMD = new MySqlCommand(insertCityQuery, Database.dbConnection.conn);
+                insertCMD.ExecuteNonQuery();
+                
+                var insertResult = cmd.ExecuteScalar();
+                cityID = int.Parse(insertResult.ToString());
+                return cityID;
+            }
+                
+            
+            
+
+            
+        }
+
+        
+        private int updateAddress(int entryCityID)
+        {
+            
+            int addressID = 0;
+            string query = $"SELECT addressId FROM address WHERE address = '{address1TextBox.Text}' AND address2 = '{address2TextBox.Text}'";
+            
+            MySqlCommand cmd = new MySqlCommand(query, Database.dbConnection.conn);
+            var result = cmd.ExecuteScalar();
+            if (result != null)
+            {
+                addressID = int.Parse(result.ToString());
+                string cityQuery = $"SELECT cityId FROM address WHERE addressId = {addressID}";
+                MySqlCommand cityCMD = new MySqlCommand(cityQuery, Database.dbConnection.conn);
+                var cityResult = cityCMD.ExecuteScalar();
+                if (cityResult != null)
+                {
+                    int cityID = int.Parse(cityResult.ToString());
+                    
+                    if (cityID != entryCityID)
+                    {
+                         
+                        string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                        
+                        string insertAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{address1TextBox.Text}', '{address2TextBox.Text}', {entryCityID}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}','{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                        //string updateAddressQuery = $"UPDATE city SET countryId = {updateCountry()} WHERE cityId = {cityID}";
+                        MySqlCommand insertAddress = new MySqlCommand(insertAddressQuery, Database.dbConnection.conn);
+                        insertAddress.ExecuteNonQuery();
+                        string newCMD = $"SELECT addressID FROM address WHERE address = '{address1TextBox.Text}' AND address2 = '{address2TextBox.Text}' AND cityId = {entryCityID}";
+                        MySqlCommand selectNewID = new MySqlCommand(newCMD, Database.dbConnection.conn);
+                        var newID = selectNewID.ExecuteScalar();
+                        addressID = int.Parse(newID.ToString());
+                        return addressID;
+                    }
+                    else
+                    {
+                        MessageBox.Show("City ID Matched");
+                        return addressID;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("City ID returned null");
+                    return addressID;
+                }
+
+            }
+            else
+            {
+                //Address Name is different so we are inserting and not updating
+                MessageBox.Show("New address in 1 or 2");
+                
+                string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                string insertAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{address1TextBox.Text}', '{address2TextBox.Text}', {entryCityID}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}','{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                MySqlCommand insertCMD = new MySqlCommand(insertAddressQuery, Database.dbConnection.conn);
+                insertCMD.ExecuteNonQuery();
+
+                var insertResult = cmd.ExecuteScalar();
+                addressID = int.Parse(insertResult.ToString());
+                return addressID;
+            }
+        }
+
+        
+        private void updateCustomer(int entryAddressID)
+        {
+            int customerID = 0;
+            string query = $"SELECT customerId FROM customer WHERE customerName = '{customerNameTextBox.Text}'";
+            MySqlCommand cmd = new MySqlCommand(query, Database.dbConnection.conn);
+            var result = cmd.ExecuteScalar();
+            if (result != null)
+            {
+                customerID = int.Parse(result.ToString());
+                string selectAddressID = $"SELECT addressId FROM customer WHERE customerId = {customerID}";
+                MySqlCommand getAddressID = new MySqlCommand(selectAddressID, Database.dbConnection.conn);
+                var dbAddressIdRaw = getAddressID.ExecuteScalar();
+                int dbAddressID = int.Parse(dbAddressIdRaw.ToString());
+                if(dbAddressID != entryAddressID)
+                {
+                    string updateCustAddressID = $"UPDATE customer SET addressId = {entryAddressID} WHERE customerId = {customerID}";
+                    MySqlCommand updateCMD = new MySqlCommand(updateCustAddressID, Database.dbConnection.conn);
+                    updateCMD.ExecuteNonQuery();
+                }
+
+            }
+            else
+            {
+                string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                string insertNewCustomer = $"INSERT INTO customer(customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{customerNameTextBox.Text}', {entryAddressID}, 1, '{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                MySqlCommand insertCust = new MySqlCommand(insertNewCustomer, Database.dbConnection.conn);
+                insertCust.ExecuteNonQuery();
+            }
+        }
+
+        private bool isValid()
+        {
+            if (cityTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a city name. ";
+                return false;
+            }
+            if (countryTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a country name.";
+                return false;
+            }
+            if (address1TextBox.Text == "")
+            {
+                errorLabel.Text = "You need an address. ";
+                return false;
+            }
+            if (customerNameTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a customer name";
+                return false;
+            }
+            if (zipTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a zip code.";
+                return false;
+            }
+                
+            return true;
+        }
     }
+
+
 }

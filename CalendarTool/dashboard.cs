@@ -137,8 +137,10 @@ namespace CalendarTool
 
             if (selectedCustomerID != null)
             {
-                addCustomerForm updateForm = new addCustomerForm((int)selectedCustomerID);
+                updateCustomerForm updateForm = new updateCustomerForm((int)selectedCustomerID);
                 updateForm.Show();
+
+                this.Close();
             }
         }
 

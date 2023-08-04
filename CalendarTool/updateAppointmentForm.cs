@@ -87,50 +87,52 @@ namespace CalendarTool
         //Need help here
 		private void createApptButton_Click(object sender, EventArgs e)
 		{
-            
-            int apptID = int.Parse(apptIDTextBox.Text);
-            int customerID = int.Parse(custIDcomboBox.SelectedValue.ToString());
-            int userID = int.Parse(userIDTextBox.Text);
-            startDateTimePicker.Value.ToUniversalTime();
-            
-            string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss");
-
-            //string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
-
-            DateTime startDt = DateTime.Parse(startDate);
-            DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
-            string startUTC = startDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
-
-            endDateTimePicker.Value.ToUniversalTime();
-            DateTime endDt = DateTime.Parse(endDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-            DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
-            string endUTC = endDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
-            
-            string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
-
-            Validator validator = new Validator();
-            //NEED TO MIRROR SET UP TO THE ADD APPOINTMENT FORM
-            bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
-            if (withinBusinessHours == true)
+            if (isValid())
             {
-                string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{typeComboBox.SelectedValue}', url = '{urlTextBox.Text}', start = '{startUTC}', end = '{endUTC}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
+                int apptID = int.Parse(apptIDTextBox.Text);
+                int customerID = int.Parse(custIDcomboBox.SelectedValue.ToString());
+                int userID = int.Parse(userIDTextBox.Text);
+                startDateTimePicker.Value.ToUniversalTime();
 
+                string startDate = startDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(updateApptQuery, Database.dbConnection.conn))
+                //string start = startDateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+
+                DateTime startDt = DateTime.Parse(startDate);
+                DateTime startDtUTC = TimeZoneInfo.ConvertTimeToUtc(startDt);
+                string startUTC = startDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
+
+                endDateTimePicker.Value.ToUniversalTime();
+                DateTime endDt = DateTime.Parse(endDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                DateTime endDtUTC = TimeZoneInfo.ConvertTimeToUtc(endDt);
+                string endUTC = endDtUTC.ToString("yyyy-MM-dd HH:mm:ss");
+
+                string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+
+                Validator validator = new Validator();
+                //NEED TO MIRROR SET UP TO THE ADD APPOINTMENT FORM
+                bool withinBusinessHours = validator.withinBusinessHours(startDtUTC, endDtUTC);
+                if (withinBusinessHours == true)
                 {
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                }
+                    string updateApptQuery = $"UPDATE appointment SET customerId={customerID}, userId = {userID}, title = '{apptTitleTextBox.Text}', description = '{descriptionTextBox.Text}', location = '{locationTextBox.Text}', contact = '{pocTextBox.Text}', type = '{typeComboBox.SelectedValue}', url = '{urlTextBox.Text}', start = '{startUTC}', end = '{endUTC}', lastUpdate='{lastUpdate}', lastUpdateBy='{GlobalConfig.userName}' WHERE appointmentId = '{apptID}'";
 
-                dashboard dashboard = new dashboard();
-                dashboard.Show();
-                Close();
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(updateApptQuery, Database.dbConnection.conn))
+                    {
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                    }
+
+                    dashboard dashboard = new dashboard();
+                    dashboard.Show();
+                    Close();
+                }
+                else
+                {
+                    errorLabel.Text = "Appointment isn't within business hours. ";
+                }
             }
-            else
-            {
-                errorLabel.Text = "Appointment isn't within business hours. ";
-            }
-            
+           
         }
 
 		private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -173,6 +175,48 @@ namespace CalendarTool
                 List<string> ids = GlobalConfig.customerIds.OrderBy(i => i).ToList();
                 custIDcomboBox.DataSource = ids;
             }
+        }
+
+        private bool isValid()
+        {
+            if (apptTitleTextBox.Text == "")
+            {
+                errorLabel.Text = "Add a title. ";
+                return false;
+            }
+            if (descriptionTextBox.Text == "")
+            {
+                errorLabel.Text = "Add a description.";
+                return false;
+            }
+            if (custIDcomboBox.SelectedValue.ToString() == "")
+            {
+                errorLabel.Text = "Select a customer ID. ";
+                return false;
+            }
+            if (typeComboBox.SelectedValue.ToString() == "")
+            {
+                errorLabel.Text = "Select an appointment type. ";
+                return false;
+            }
+            if (locationTextBox.Text == "")
+            {
+                errorLabel.Text = "Add a location. ";
+                return false;
+            }
+
+            if (pocTextBox.Text == "")
+            {
+                errorLabel.Text = "Add a POC.";
+                return false;
+            }
+
+            if (urlTextBox.Text == "")
+            {
+                errorLabel.Text = "Add a url. ";
+                return false;
+            }
+            return true;
         }
     }
 }

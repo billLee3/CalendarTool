@@ -83,9 +83,8 @@ namespace CalendarTool
             this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.errorLabel.Location = new System.Drawing.Point(224, 474);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(65, 32);
+            this.errorLabel.Size = new System.Drawing.Size(0, 32);
             this.errorLabel.TabIndex = 3;
-            this.errorLabel.Text = "Error";
             // 
             // customerNameLabel
             // 

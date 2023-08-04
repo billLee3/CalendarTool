@@ -23,8 +23,9 @@ namespace CalendarTool
         {
             InitializeComponent();
             initID = recordID;
-            customerNumTextBox.Enabled = false;
-            customerNumTextBox.Text = recordID.ToString();
+            
+            customerNameTextBox.Enabled = false;
+            
             int addressId = 0;
             string customer = $"SELECT * FROM customer WHERE customerId = {recordID}";
             MySqlCommand cmd = new MySqlCommand(customer, Database.dbConnection.conn);
@@ -188,7 +189,7 @@ namespace CalendarTool
         }
         public void createAddress(string addressName, int cityId)
         {
-            int country = cityId;
+            int city = cityId;
             string postalCode = zipTextBox.Text;
             string phoneNum = phoneNumTextBox.Text;
             string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
@@ -196,7 +197,7 @@ namespace CalendarTool
             string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             
             //Error came up here...test with address2 filled in. 
-            string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {cityId}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
+            string createAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{addressName}', '{address2TextBox.Text}', {city}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}', '{createDate}', '{GlobalConfig.userName}', '{lastUpdate}', '{GlobalConfig.userName}')";
             MySqlCommand cmd = new MySqlCommand(createAddressQuery, Database.dbConnection.conn);
             cmd.ExecuteNonQuery();
         }
@@ -241,50 +242,55 @@ namespace CalendarTool
             int addressId = 0;
             if (initID == -1)
             {
-                int countryID = createCountry();
-                int cityId = isCity(cityTextBox.Text);
-                if (cityId == -1)
+                if (isValid())
                 {
-                    createCity(cityTextBox.Text, countryID);
-                    cityId = isCity(cityTextBox.Text);
-                }
-
-                int customerId = isCustomer(customerNameTextBox.Text);
-               
-                MessageBox.Show((customerNameTextBox.Text));
-                MessageBox.Show(customerId.ToString());
-                if (customerId != -1)
-                {
-                    string getAddressId = $"SELECT addressId FROM customer WHERE customerId = {customerId}";
-                    MySqlCommand cmd = new MySqlCommand(getAddressId, Database.dbConnection.conn);
-                    var result = cmd.ExecuteScalar();
-                    if (result != null)
+                    int countryID = createCountry();
+                    int cityId = isCity(cityTextBox.Text);
+                    if (cityId == -1)
                     {
-                        addressId = Convert.ToInt32(result);
-                        if (addressId == isAddress(address1TextBox.Text))
-                        {
-                            MessageBox.Show("This customer already exists.");
-                            return;
-                        }
+                        createCity(cityTextBox.Text, countryID);
+                        cityId = isCity(cityTextBox.Text);
                     }
 
+                    int customerId = isCustomer(customerNameTextBox.Text);
+
+                    MessageBox.Show((customerNameTextBox.Text));
+                    MessageBox.Show(customerId.ToString());
+                    if (customerId != -1)
+                    {
+                        string getAddressId = $"SELECT addressId FROM customer WHERE customerId = {customerId}";
+                        MySqlCommand cmd = new MySqlCommand(getAddressId, Database.dbConnection.conn);
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            addressId = Convert.ToInt32(result);
+                            if (addressId == isAddress(address1TextBox.Text))
+                            {
+                                MessageBox.Show("This customer already exists.");
+                                return;
+                            }
+                        }
+
+                    }
+                    else if (customerId == -1)
+                    {
+                        createAddress(address1TextBox.Text, cityId);
+                        addressId = isAddress(address1TextBox.Text);
+                        createCustomer(customerNameTextBox.Text, addressId);
+                        MessageBox.Show("Created new customer!");
+                    }
+                    Close();
+                
                 }
-                else if (customerId == -1)
-                {
-                    createAddress(address1TextBox.Text, cityId);
-                    addressId = isAddress(address1TextBox.Text);
-                    createCustomer(customerNameTextBox.Text, addressId);
-                    MessageBox.Show("Created new customer!");
-                }
-                Close();
             }
             else
             {
-                //disabling customer name because if the person's name is changing then they should just be listed an inactive. 
-                customerNameTextBox.Enabled = false;
+                bool cityChange = false;
+                bool countryChange = false;
+                bool addressChange = false;
                 initID = isCustomer(customerNameTextBox.Text);
-                //MessageBox.Show(initID.ToString());
 
+                //Didn't change the address ID if the address name 
                 int addressID = isAddress(address1TextBox.Text);
                 if (addressID != -1)
                 {
@@ -295,17 +301,20 @@ namespace CalendarTool
                 }
                 else
                 {
+                    addressChange = true;
                     int cityID = determineCity(addressID);
                     createAddress(address1TextBox.Text, cityID);
-                   
+                    int id = isAddress(address1TextBox.Text);
+                    addressID = id;
+
                 }
 
-                
+
                 int activeNum = Convert.ToInt32(activeTextbox.Text);
                 string lastUpdate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
-                
-                //FOR SOME REASON
-                string customerQuery = $"UPDATE customer SET addressId = {isAddress(address1TextBox.Text)}, active = {activeNum}, lastUpdate = '{lastUpdate}', lastUpdateBy = '{GlobalConfig.userName}' WHERE customerId = {initID}";
+
+
+                string customerQuery = $"UPDATE customer SET addressId = {addressID}, active = {activeNum}, lastUpdate = '{lastUpdate}', lastUpdateBy = '{GlobalConfig.userName}' WHERE customerId = {initID}";
 
                 MySqlCommand cmd = new MySqlCommand(customerQuery, Database.dbConnection.conn);
                 cmd.ExecuteNonQuery();
@@ -357,6 +366,37 @@ namespace CalendarTool
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private bool isValid()
+        {
+            if (cityTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a city name. ";
+                return false;
+            }
+            if (countryTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a country name.";
+                return false;
+            }
+            if (address1TextBox.Text == "")
+            {
+                errorLabel.Text = "You need an address. ";
+                return false;
+            }
+            if (customerNameTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a customer name";
+                return false;
+            }
+            if (zipTextBox.Text == "")
+            {
+                errorLabel.Text = "You need a zip code.";
+                return false;
+            }
+
+            return true;
         }
     }
 }

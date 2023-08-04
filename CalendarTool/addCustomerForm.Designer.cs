@@ -43,7 +43,6 @@ namespace CalendarTool
             this.zipcodeLabel = new System.Windows.Forms.Label();
             this.phoneNumLabel = new System.Windows.Forms.Label();
             this.activeLabel = new System.Windows.Forms.Label();
-            this.customerNumTextBox = new System.Windows.Forms.TextBox();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.address2TextBox = new System.Windows.Forms.TextBox();
             this.address1TextBox = new System.Windows.Forms.TextBox();
@@ -74,9 +73,8 @@ namespace CalendarTool
             this.customerNumLabel.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.customerNumLabel.Location = new System.Drawing.Point(45, 74);
             this.customerNumLabel.Name = "customerNumLabel";
-            this.customerNumLabel.Size = new System.Drawing.Size(139, 32);
+            this.customerNumLabel.Size = new System.Drawing.Size(0, 32);
             this.customerNumLabel.TabIndex = 2;
-            this.customerNumLabel.Text = "Customer #";
             // 
             // errorLabel
             // 
@@ -85,9 +83,8 @@ namespace CalendarTool
             this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.errorLabel.Location = new System.Drawing.Point(224, 474);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(65, 32);
+            this.errorLabel.Size = new System.Drawing.Size(0, 32);
             this.errorLabel.TabIndex = 3;
-            this.errorLabel.Text = "Error";
             // 
             // customerNameLabel
             // 
@@ -168,14 +165,6 @@ namespace CalendarTool
             this.activeLabel.Size = new System.Drawing.Size(80, 32);
             this.activeLabel.TabIndex = 11;
             this.activeLabel.Text = "Active";
-            // 
-            // customerNumTextBox
-            // 
-            this.customerNumTextBox.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.customerNumTextBox.Location = new System.Drawing.Point(201, 71);
-            this.customerNumTextBox.Name = "customerNumTextBox";
-            this.customerNumTextBox.Size = new System.Drawing.Size(256, 35);
-            this.customerNumTextBox.TabIndex = 12;
             // 
             // cityTextBox
             // 
@@ -298,7 +287,6 @@ namespace CalendarTool
             this.Controls.Add(this.address1TextBox);
             this.Controls.Add(this.address2TextBox);
             this.Controls.Add(this.cityTextBox);
-            this.Controls.Add(this.customerNumTextBox);
             this.Controls.Add(this.activeLabel);
             this.Controls.Add(this.phoneNumLabel);
             this.Controls.Add(this.zipcodeLabel);
@@ -330,7 +318,6 @@ namespace CalendarTool
         private Label zipcodeLabel;
         private Label phoneNumLabel;
         private Label activeLabel;
-        private TextBox customerNumTextBox;
         private TextBox cityTextBox;
         private TextBox address2TextBox;
         private TextBox address1TextBox;
