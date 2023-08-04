@@ -91,8 +91,18 @@ namespace CalendarTool
                 int entryCityID = updateCity(entryCountryID);
                 int entryAddressID = updateAddress(entryCityID);
                 updateCustomer(entryAddressID);
+                MessageBox.Show("Record updated!");
+                dashboard dashboard = new dashboard();
+                dashboard.Show();
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Form is invalid. ");
             }
             
+           
         }
 
         private int updateCountry()
@@ -187,6 +197,9 @@ namespace CalendarTool
         {
             
             int addressID = 0;
+            int cityID = 0;
+            string zip = "";
+            string phoneNum = "";
             string query = $"SELECT addressId FROM address WHERE address = '{address1TextBox.Text}' AND address2 = '{address2TextBox.Text}'";
             
             MySqlCommand cmd = new MySqlCommand(query, Database.dbConnection.conn);
@@ -194,39 +207,58 @@ namespace CalendarTool
             if (result != null)
             {
                 addressID = int.Parse(result.ToString());
-                string cityQuery = $"SELECT cityId FROM address WHERE addressId = {addressID}";
+                //Ignoring pho
+                string cityQuery = $"SELECT cityId, postalCode, phone FROM address WHERE addressId = {addressID}";
                 MySqlCommand cityCMD = new MySqlCommand(cityQuery, Database.dbConnection.conn);
-                var cityResult = cityCMD.ExecuteScalar();
-                if (cityResult != null)
+                //var cityResult = cityCMD.ExecuteScalar();
+                var reader = cityCMD.ExecuteReader();
+                while (reader.Read())
                 {
-                    int cityID = int.Parse(cityResult.ToString());
-                    
-                    if (cityID != entryCityID)
-                    {
+                    cityID = reader.GetInt32("cityId");
+                    zip = reader.GetString("postalCode");
+                    phoneNum = reader.GetString("phone");
+                }
+                reader.Close();
+                if (cityID != entryCityID)
+                {
                          
-                        string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                    string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
                         
-                        string insertAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{address1TextBox.Text}', '{address2TextBox.Text}', {entryCityID}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}','{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
-                        //string updateAddressQuery = $"UPDATE city SET countryId = {updateCountry()} WHERE cityId = {cityID}";
-                        MySqlCommand insertAddress = new MySqlCommand(insertAddressQuery, Database.dbConnection.conn);
-                        insertAddress.ExecuteNonQuery();
-                        string newCMD = $"SELECT addressID FROM address WHERE address = '{address1TextBox.Text}' AND address2 = '{address2TextBox.Text}' AND cityId = {entryCityID}";
-                        MySqlCommand selectNewID = new MySqlCommand(newCMD, Database.dbConnection.conn);
-                        var newID = selectNewID.ExecuteScalar();
-                        addressID = int.Parse(newID.ToString());
-                        return addressID;
-                    }
-                    else
-                    {
-                        MessageBox.Show("City ID Matched");
-                        return addressID;
-                    }
+                    string insertAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{address1TextBox.Text}', '{address2TextBox.Text}', {entryCityID}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}','{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                    //string updateAddressQuery = $"UPDATE city SET countryId = {updateCountry()} WHERE cityId = {cityID}";
+                    MySqlCommand insertAddress = new MySqlCommand(insertAddressQuery, Database.dbConnection.conn);
+                    insertAddress.ExecuteNonQuery();
+                    string newCMD = $"SELECT addressID FROM address WHERE address = '{address1TextBox.Text}' AND address2 = '{address2TextBox.Text}' AND cityId = {entryCityID}";
+                    MySqlCommand selectNewID = new MySqlCommand(newCMD, Database.dbConnection.conn);
+                    var newID = selectNewID.ExecuteScalar();
+                    addressID = int.Parse(newID.ToString());
+                    return addressID;
+                }else if (zip != zipTextBox.Text)
+                {
+                    string createDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    string insertAddressQuery = $"INSERT INTO address(address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('{address1TextBox.Text}', '{address2TextBox.Text}', {entryCityID}, '{zipTextBox.Text}', '{phoneNumTextBox.Text}','{createDate}', '{GlobalConfig.userName}', '{createDate}', '{GlobalConfig.userName}')";
+                    //string updateAddressQuery = $"UPDATE city SET countryId = {updateCountry()} WHERE cityId = {cityID}";
+                    MySqlCommand insertAddress = new MySqlCommand(insertAddressQuery, Database.dbConnection.conn);
+                    insertAddress.ExecuteNonQuery();
+                    string newCMD = $"SELECT addressID FROM address WHERE address = '{address1TextBox.Text}' AND address2 = '{address2TextBox.Text}' AND cityId = {entryCityID}";
+                    MySqlCommand selectNewID = new MySqlCommand(newCMD, Database.dbConnection.conn);
+                    var newID = selectNewID.ExecuteScalar();
+                    addressID = int.Parse(newID.ToString());
+                    return addressID;
+                }
+                else if (phoneNum != phoneNumTextBox.Text)
+                {
+                    string updateQuery = $"UPDATE address SET phone = {phoneNum} WHERE addressId = {addressID}";
+                    MySqlCommand updateCMD = new MySqlCommand(updateQuery, Database.dbConnection.conn);
+                    updateCMD.ExecuteNonQuery();
+                    return addressID;
                 }
                 else
                 {
-                    MessageBox.Show("City ID returned null");
                     return addressID;
                 }
+                
 
             }
             else
@@ -249,12 +281,20 @@ namespace CalendarTool
         private void updateCustomer(int entryAddressID)
         {
             int customerID = 0;
-            string query = $"SELECT customerId FROM customer WHERE customerName = '{customerNameTextBox.Text}'";
+            int active = 0;
+            string query = $"SELECT customerId, active FROM customer WHERE customerName = '{customerNameTextBox.Text}'";
             MySqlCommand cmd = new MySqlCommand(query, Database.dbConnection.conn);
             var result = cmd.ExecuteScalar();
             if (result != null)
             {
-                customerID = int.Parse(result.ToString());
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    customerID = reader.GetInt32("customerId");
+                    active = reader.GetInt32("active");
+                }
+                reader.Close();
+                
                 string selectAddressID = $"SELECT addressId FROM customer WHERE customerId = {customerID}";
                 MySqlCommand getAddressID = new MySqlCommand(selectAddressID, Database.dbConnection.conn);
                 var dbAddressIdRaw = getAddressID.ExecuteScalar();
@@ -264,6 +304,13 @@ namespace CalendarTool
                     string updateCustAddressID = $"UPDATE customer SET addressId = {entryAddressID} WHERE customerId = {customerID}";
                     MySqlCommand updateCMD = new MySqlCommand(updateCustAddressID, Database.dbConnection.conn);
                     updateCMD.ExecuteNonQuery();
+                }
+                if (active != int.Parse(activeTextbox.Text))
+                {
+                    int activeValue = int.Parse(activeTextbox.Text);
+                    string updateCustAddressID = $"UPDATE customer SET active = {activeValue} WHERE customerId = {customerID}";
+                    MySqlCommand updateCMD2 = new MySqlCommand(updateCustAddressID, Database.dbConnection.conn);
+                    updateCMD2.ExecuteNonQuery();
                 }
 
             }
@@ -301,6 +348,17 @@ namespace CalendarTool
             if (zipTextBox.Text == "")
             {
                 errorLabel.Text = "You need a zip code.";
+                return false;
+            }
+            int activeNum = int.Parse(activeTextbox.Text);
+            if (activeNum == 1 || activeNum == 0)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(activeNum.ToString());
+                errorLabel.Text = "Select 1 for active and 0 for inactive.";
                 return false;
             }
                 
