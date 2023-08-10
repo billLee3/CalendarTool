@@ -732,3 +732,7 @@ Log Entry:
 User: test
 TimeStamp: 8/4/2023 8:27:34 PM
 ---------------------
+Successful Login: 
+User: test
+TimeStamp: 8/9/2023 11:57:20 PM
+---------------------

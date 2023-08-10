@@ -277,7 +277,7 @@ namespace CalendarTool
                         createAddress(address1TextBox.Text, cityId);
                         addressId = isAddress(address1TextBox.Text);
                         createCustomer(customerNameTextBox.Text, addressId);
-                        MessageBox.Show("Created new customer!");
+                        GlobalConfig.successMessage("customer");
                     }
                     Close();
                 

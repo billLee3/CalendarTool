@@ -74,7 +74,7 @@ namespace CalendarTool
                                 DataSet ds = new DataSet();
                                 adapter.Fill(ds);
                             }
-
+                            GlobalConfig.successMessage("appointment");
                             dashboard dashboard = new dashboard();
                             dashboard.Show();
                             Close();
@@ -133,7 +133,7 @@ namespace CalendarTool
 
         private void getTypes()
         {
-            //using lamdba expression to efficiently reorder the values alphabetically for easier readability. 
+            //using lamdba expression to efficiently reorder the values alphabetically for easier readability. The lambda expression is more efficient because it does the work of several lines of code all in one line of code. 
             List<string> types = GlobalConfig.apptTypes.OrderBy(t => t).ToList();
             typeComboBox.DataSource = types;
         }
@@ -151,11 +151,11 @@ namespace CalendarTool
                 int rows = dt.Rows.Count;
                 List<string> list = new List<String>();
 
-                //Running a for loop via a lambda function. 
+                //Running a for loop via a lambda function. More effecient because it reduces the size of this .cs file and accomplishes what several lines would do all in one single line. 
                 dt.Rows.Cast<DataRow>().ToList().ForEach(row => list.Add(row[0].ToString()));
                 GlobalConfig.customerIds = list;
                 
-                //using lamdba expression to efficiently reorder the code so the order is sequential. 
+                //using lamdba expression to efficiently reorder the code so the order is sequential and places them in a list all in one line of code rather than several lines of code adding to the requirements of the application. 
                 List<string> ids = GlobalConfig.customerIds.OrderBy(i => i).ToList();
                 custIDcomboBox.DataSource = ids;
             }
