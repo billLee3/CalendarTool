@@ -26,7 +26,6 @@ C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\bin\Debug\System.Memory.
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.csproj.AssemblyReference.cache
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.Properties.Resources.resources
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.csproj.GenerateResource.cache
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.csproj.CoreCompileInputs.cache
@@ -49,3 +48,4 @@ C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.C
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.MonthlyTypes.resources
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.customerSchedule.resources
 C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.userCreation.resources
+C:\Users\LabUser\source\repos\CalendarTool\CalendarTool\obj\Debug\CalendarTool.csproj.AssemblyReference.cache

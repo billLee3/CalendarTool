@@ -16,7 +16,7 @@ namespace CalendarTool
 {
 	public partial class LoginForm : Form
 	{
-        private BindingSource userBindingSource;
+        
 		public LoginForm()
 		{
 			InitializeComponent();
@@ -52,7 +52,7 @@ namespace CalendarTool
 
                             writeLog(GlobalConfig.userName, "success");
                             GlobalConfig.successMessage("login");
-                            notificationCheck(userName);
+                            notificationCheck(usernameTextbox.Text);
                             dashboard dashboard = new dashboard();
                             dashboard.Show();
 
@@ -93,14 +93,14 @@ namespace CalendarTool
                     {
                         w.WriteLine("Successful Login: ");
                         w.WriteLine($"User: {userName}");
-                        w.WriteLine($"TimeStamp: {DateTime.UtcNow.ToString()}");
+                        w.WriteLine($"TimeStamp: {DateTime.Now.ToString()}");
                         w.WriteLine("---------------------");
                     }
                     else
                     {
                         w.WriteLine("Failed Login Attempt: ");
                         w.WriteLine($"User: {userName}");
-                        w.WriteLine($"TimeStamp: {DateTime.UtcNow.ToString()}");
+                        w.WriteLine($"TimeStamp: {DateTime.Now.ToString()}");
                         w.WriteLine("---------------------");
                     }
                     
@@ -116,7 +116,7 @@ namespace CalendarTool
 
         private void notificationCheck(string username)
         {
-            string apptQuery = $"Select * from appointment WHERE createdBy = {username}";
+            string apptQuery = $"Select * from appointment WHERE createdBy = '{username}'";
             DateTime now = DateTime.UtcNow;
 
 
@@ -133,10 +133,12 @@ namespace CalendarTool
                     //15 Minutes
                     string start = dt.Rows[idx]["start"].ToString();
                     DateTime startDt = DateTime.Parse(start);
+                    //System.TimeSpan diff = startDt.Subtract(now);
                     System.TimeSpan diff = now.Subtract(startDt);
                     double seconds = diff.TotalSeconds;
+                    MessageBox.Show(seconds.ToString());
 
-                    if (seconds <= 900 && seconds > 0)
+                    if (seconds >= -900 && seconds <= 0)
                     {
                         MessageBox.Show("You have a meeting in within the next 15 minutes. ");
                     }

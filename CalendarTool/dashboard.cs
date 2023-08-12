@@ -32,23 +32,14 @@ namespace CalendarTool
 
                 for (int idx = 0; idx < dt.Rows.Count; idx++)
                 {
-                    //15 Minutes
-                    string start = dt.Rows[idx]["start"].ToString();
-                    DateTime startDt = DateTime.Parse(start);
-                    System.TimeSpan diff = now.Subtract(startDt);
-                    double seconds = diff.TotalSeconds;
                     
-                    if (seconds <= 900 && seconds > 0)
-                    {
-                        MessageBox.Show("You have a meeting in within the next 15 minutes. ");
-                    }
                     dt.Rows[idx]["start"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["start"], TimeZoneInfo.Local).ToString();
                     dt.Rows[idx]["end"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["end"], TimeZoneInfo.Local).ToString();
                     dt.Rows[idx]["createDate"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["createDate"], TimeZoneInfo.Local).ToString();
                     dt.Rows[idx]["lastUpdate"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[idx]["lastUpdate"], TimeZoneInfo.Local).ToString();
                 }
                 
-                //appointmentsDGV.DataSource = ds.Tables[0];
+                
             }
             appointmentsDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             appointmentsDGV.ReadOnly = true;
